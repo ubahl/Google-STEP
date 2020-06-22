@@ -7,3 +7,10 @@
 #greeting-container {
   margin-top: 20px;
 }
+
+#maintext {
+    width: 300px;
+    padding: 5px;
+    border: 2px solid darkturquoise;
+    margin: 10px;
+}
