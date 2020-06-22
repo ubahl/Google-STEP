@@ -1,16 +1,33 @@
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 650px;
 }
 
 #greeting-container {
   margin-top: 20px;
 }
 
-#maintext {
-    width: 300px;
+#cyanbox {
+    width: 50%;
     padding: 5px;
     border: 2px solid darkturquoise;
     margin: 10px;
+    text-align: center;
+    background-color: lightcyan;
+}
+
+#yellowbox {
+    width: 50%;
+    padding: 5px;
+    border: 2px solid gold;
+    margin: 10px;
+    text-align: center;
+    background-color: lightyellow;
+}
+
+#imagebox {
+    width: 50%;
+    height: auto;
+    padding: 5px;
+    margin: 10px
 }
