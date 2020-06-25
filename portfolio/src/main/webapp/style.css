@@ -1,9 +1,41 @@
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 650px;
+  text-align: center;
+  font-family: Verdana, Helvetica, sans-serif;
 }
 
 #greeting-container {
   margin-top: 20px;
+  display: inline-block;
+}
+
+#cyanbox {
+    width: 50%;
+    padding: 5px;
+    border: 2px solid darkturquoise;
+    margin: 10px;
+    text-align: center;
+    background-color: lightcyan;
+    display: inline-block;
+}
+
+#yellowbox {
+    width: 50%;
+    padding: 5px;
+    border: 2px solid gold;
+    margin: 10px;
+    text-align: center;
+    background-color: lightyellow;
+    display: inline-block;
+}
+
+#imageboxcyan {
+    width: 50%;
+    height: auto;
+    padding: 5px;
+    margin: 10px;
+    display: inline-block;
+    border: 2px solid darkturquoise;
+    background-color: lightcyan;
 }
