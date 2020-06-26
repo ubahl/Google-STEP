@@ -12,15 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
 
+/* changes current window to reviews.html */
 function reviewsPage()
 {
     window.location.href = "reviews.html";
 }
 
+/* gets a random welcome message from /data serverlet and displays it in the toptext */
+async function getRandomMessage() {
+  const response = await fetch('/data');
+  const message = await response.text();
+  document.getElementById('top-text').innerText = message;
+}
+
+/**
+ * Adds a random greeting to the page.
+ */
 function addRandomGreeting() 
 {
   const greetings =

@@ -1,53 +1,44 @@
-html
-{
+html {
     /* border: 10px solid #DCBEA1; */
 }
 
-body
-{
-    background-color: #FFEAD6;
+body {
+    background-color: #ffead6;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
 
-#toptext
-{
+#top-text {
     font-family: Helvetica, Verdana, sans-serif;
 }
 
-#logobox
-{
-    width: 200;
+#logo-box {
     height: auto;
-    top: 400px;
     padding-top: 100px;
+    top: 400px;
+    width: 200;
 }
 
-#box
-{
+#box {
     text-align: center;
 }
 
-#searchbox
-{
-    width: 450px;
-    height: 30px;
+#search-box {
     border: 3px solid gainsboro;
     border-radius: 50px;
-}
-
-#searchbutton
-{
     height: 30px;
-    width: 30px;
-    right: 50px;
+    width: 450px;  
 }
 
-#reviewsbutton
-{
+#search-button {
+    height: 30px;
+    right: 50px;
+    width: 30px;
+}
+
+#reviews-button {
     bottom: 10px;
-    /* top: 100%; */
-    position: absolute;
     left: 50%;
+    position: absolute;
 }
