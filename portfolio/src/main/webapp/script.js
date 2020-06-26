@@ -21,7 +21,7 @@ function reviewsPage()
 
 /* gets a random welcome message from /data serverlet and displays it in the toptext */
 async function getRandomMessage() {
-  const response = await fetch('/data');
+  const response = await fetch('/welcome');
   const message = await response.text();
   document.getElementById('top-text').innerText = message;
 }

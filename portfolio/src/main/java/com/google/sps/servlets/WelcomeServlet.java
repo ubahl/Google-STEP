@@ -14,7 +14,6 @@
 
 package com.google.sps.servlets;
 
-import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,33 +22,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
-    private ArrayList<String> reviews;
+/** Servlet that returns welcome messages*/
+@WebServlet("/welcome")
+public class WelcomeServlet extends HttpServlet {
+    private List<String> welcomeMessages;
   
     @Override
     public void init() {
-        reviews = new ArrayList<String>();
-        reviews.add("This website is super fun! I always use it when I need some new boba ideas.");
-        reviews.add("Just like a Google Reviews for Boba! A must have.");
-        reviews.add("Boba Bud is my new bud. I 100% recommend.");
-    }
-
-
-    private String listToJson(ArrayList<String> alist) {
-        Gson gson = new Gson();
-        String json = gson.toJson(alist);
-        return json;
+        welcomeMessages = new ArrayList<>();
+        welcomeMessages.add("Feeling bubbly?");
+        welcomeMessages.add("Looking for some good boba? Look no further.");
+        welcomeMessages.add("Looking for something Tas-tea?");
+        welcomeMessages.add("BOBA TIME!");
+        welcomeMessages.add("Oolonging for some tea?");
+        welcomeMessages.add("Have a taro-fic day!");
     }
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String json = listToJson(reviews);
+        String welcomeMessage = welcomeMessages.get((int) (Math.random() * welcomeMessages.size()));
 
-        response.setContentType("application/json;");
-        response.getWriter().println(json);
-
-        // console.log(json);
+        response.setContentType("text/html;");
+        response.getWriter().println(welcomeMessage);
     }
 }
