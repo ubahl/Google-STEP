@@ -42,3 +42,12 @@ body {
     left: 50%;
     position: absolute;
 }
+
+#white-background {
+    background-color: snow;
+    border-radius: 25px;
+    font-family: Helvetica, Verdana, sans-serif;
+    height: auto;
+    margin: 50px auto;
+    width: 50%;
+}
