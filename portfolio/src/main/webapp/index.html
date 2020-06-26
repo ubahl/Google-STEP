@@ -8,24 +8,21 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   </head>
   <body>
-      <div id="toptext">
-        <p> 
-            Looking for some good boba? Look no further. 
-        </p>
-      </div>
+      <script> getRandomMessage(); </script>
 
-      <img src="/images/bobabudlogo.png" alt="Boba Bud Logo" id="logobox">
+      <p id="top-text"></p>
+
+      <img src="/images/bobabudlogo.png" alt="Boba Bud Logo" id="logo-box">
 
       <div id="box">
-        <input type="text" placeholder="enter your zip code" id="searchbox">
-        <button type="submit" id="searchbutton">
-            <i class="fa fa-search"></i>
+        <input type="text" placeholder="enter your zip code" id="search-box">
+        <button type="submit" id="search-button">
+          <i class="fa fa-search"></i>
         </button>
       </div>
 
-      <div id="reviewsbutton">
+      <div id="reviews-button">
           <button onclick="reviewsPage()">Reviews</button>
       </div>
-
   </body>
 </html>
