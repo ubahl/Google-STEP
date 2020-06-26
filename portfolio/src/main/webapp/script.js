@@ -15,7 +15,14 @@
 /**
  * Adds a random greeting to the page.
  */
-function addRandomGreeting() {
+
+function reviewsPage()
+{
+    window.location.href = "reviews.html";
+}
+
+function addRandomGreeting() 
+{
   const greetings =
       ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!', '안녕하세요!', 'नमस्ते'];
 

@@ -43,3 +43,11 @@ body
     width: 30px;
     right: 50px;
 }
+
+#reviewsbutton
+{
+    bottom: 10px;
+    /* top: 100%; */
+    position: absolute;
+    left: 50%;
+}
