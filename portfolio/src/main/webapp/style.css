@@ -50,6 +50,8 @@ body {
     height: auto;
     margin: 50px auto;
     width: 60%;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 #review-box {
