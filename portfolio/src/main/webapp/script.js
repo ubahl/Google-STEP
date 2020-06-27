@@ -19,11 +19,33 @@ function reviewsPage()
     window.location.href = "reviews.html";
 }
 
-/* gets a random welcome message from /data serverlet and displays it in the toptext */
+/* gets a random welcome message from /welcome serverlet and displays it in the toptext */
 async function getRandomMessage() {
-  const response = await fetch('/data');
+  const response = await fetch('/welcome');
   const message = await response.text();
   document.getElementById('top-text').innerText = message;
+}
+
+/* gets the reviews from /data servlet */
+async function getReviewData() {
+  const response = await fetch('/data');
+  const message = await response.json();
+
+  for(var i = 0; i < message.length; i++) {
+    document.getElementById('white-background').innerHTML += "<div id='review-box'> <p id='review-text'>" + message[i] + "</p></div>";
+  }
+
+  /* alternate attempt which didn't work: 
+  *
+  reviewBox = document.getElementById('white-background');
+  for(var i = 0; i < message.length; i++) {
+    newComment = document.createElement('review-text');
+    newComment.innerText = message[i];
+    newBox = document.createElement('review-box');
+    newBox.appendChild(newComment);
+    reviewBox.appendChild(newBox);
+  } */
+
 }
 
 /**
