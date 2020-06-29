@@ -1,3 +1,9 @@
+/* Review Class:
+Holds the contents of a Review:
+- Name
+- Review Text
+*/
+
 package com.google.sps.servlets;
 
 public class Review {
