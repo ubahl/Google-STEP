@@ -46,7 +46,7 @@ public class DataServlet extends HttpServlet {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
         // Retrieves the Review comments with a Query
-        Query query = new Query("Review");
+        Query query = new Query("Review").addSort("timestamp", SortDirection.DESCENDING);
         PreparedQuery results = datastore.prepare(query);
 
         // Converts the comments to Review objects and temporarily stores them
@@ -75,6 +75,7 @@ public class DataServlet extends HttpServlet {
         Entity newReview = new Entity("Review");
         newReview.setProperty("name", request.getParameter("name"));
         newReview.setProperty("reviewText", request.getParameter("review"));
+        newReview.setProperty("timestamp", System.currentTimeMillis()); 
 
         // Store in Datastore and redirects back to Reviews page (where GET command activates and displays the review)
         datastore.put(newReview);
