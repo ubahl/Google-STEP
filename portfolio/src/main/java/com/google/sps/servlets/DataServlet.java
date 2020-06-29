@@ -26,16 +26,10 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    // private ArrayList<String> reviewStrings;
     private ArrayList<Review> reviews;
   
     @Override
     public void init() {
-        // reviewString = new ArrayList<String>();
-        // reviews.add("This website is super fun! I always use it when I need some new boba ideas.");
-        // reviews.add("Just like a Google Reviews for Boba! A must have.");
-        // reviews.add("Boba Bud is my new bud. I 100% recommend.");
-
         reviews = new ArrayList<Review>();
         Review review1 = new Review("ubahl", "This is a great website!");
         Review review2 = new Review("natalie", "I need boba. This website is good.");
@@ -62,10 +56,9 @@ public class DataServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // TODO
-        // Make review objects
-        // Format response
-        // Access with script and add to page
+        Review newReview = new Review(request.getParameter("name"), request.getParameter("review"));
+        reviews.add(newReview);
+
         response.sendRedirect("/reviews.html");
     }
 }
