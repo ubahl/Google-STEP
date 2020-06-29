@@ -37,10 +37,15 @@ async function getReviewData() {
     newComment = document.createElement('div');
     newComment.setAttribute('id', 'review-text');
     newComment.innerText = message[i]['reviewText'];
+
+    newUser = document.createElement('div');
+    newUser.setAttribute('id', 'reviewer-info');
+    newUser.innerText = message[i]['name'];
     
     newBox = document.createElement('p');
     newBox.setAttribute('id', 'review-box');
     
+    newBox.appendChild(newUser);
     newBox.appendChild(newComment);
     reviewBox.appendChild(newBox);
   }

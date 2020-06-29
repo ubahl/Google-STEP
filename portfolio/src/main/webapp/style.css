@@ -60,9 +60,17 @@ body {
     border: 2px DarkGrey solid;
     margin: 10px;
     display: inline-block;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
-#review-text{
+#reviewer-info {
+    font-family: Helvetica, Verdana, sans-serif;
+    color: black;
+    text-align: left;
+}
+
+#review-text {
     font-family: Helvetica, Verdana, sans-serif;
     color: DarkSlateGrey;
     text-align: left;
