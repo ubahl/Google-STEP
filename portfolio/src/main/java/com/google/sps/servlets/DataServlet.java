@@ -26,18 +26,21 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    private ArrayList<String> reviews;
+    private ArrayList<Review> reviews;
   
     @Override
     public void init() {
-        reviews = new ArrayList<String>();
-        reviews.add("This website is super fun! I always use it when I need some new boba ideas.");
-        reviews.add("Just like a Google Reviews for Boba! A must have.");
-        reviews.add("Boba Bud is my new bud. I 100% recommend.");
+        reviews = new ArrayList<Review>();
+        Review review1 = new Review("ubahl", "This is a great website!");
+        Review review2 = new Review("natalie", "I need boba. This website is good.");
+        Review review3 = new Review("sanya", "How did I get here");
+        reviews.add(review1);
+        reviews.add(review2);
+        reviews.add(review3);
     }
 
 
-    private String listToJson(ArrayList<String> alist) {
+    private String listToJson(ArrayList<Review> alist) {
         Gson gson = new Gson();
         String json = gson.toJson(alist);
         return json;
@@ -49,5 +52,13 @@ public class DataServlet extends HttpServlet {
 
         response.setContentType("application/json;");
         response.getWriter().println(json);
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Review newReview = new Review(request.getParameter("name"), request.getParameter("review"));
+        reviews.add(newReview);
+
+        response.sendRedirect("/reviews.html");
     }
 }
