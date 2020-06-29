@@ -36,7 +36,7 @@ async function getReviewData() {
     // reviewBox.innerHTML += "<div id='review-box'> <p id='review-text'>" + message[i] + "</p></div>";
     newComment = document.createElement('div');
     newComment.setAttribute('id', 'review-text');
-    newComment.innerText = message[i];
+    newComment.innerText = message[i]['reviewText'];
     
     newBox = document.createElement('p');
     newBox.setAttribute('id', 'review-box');
