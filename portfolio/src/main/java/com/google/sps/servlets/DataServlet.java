@@ -14,6 +14,12 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,17 +32,17 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    private ArrayList<Review> reviews;
+    // private ArrayList<Review> reviews;
   
     @Override
     public void init() {
-        reviews = new ArrayList<Review>();
-        Review review1 = new Review("ubahl", "This is a great website!");
-        Review review2 = new Review("natalie", "I need boba. This website is good.");
-        Review review3 = new Review("sanya", "How did I get here");
-        reviews.add(review1);
-        reviews.add(review2);
-        reviews.add(review3);
+        // reviews = new ArrayList<Review>();
+        // Review review1 = new Review("ubahl", "This is a great website!");
+        // Review review2 = new Review("natalie", "I need boba. This website is good.");
+        // Review review3 = new Review("sanya", "How did I get here");
+        // reviews.add(review1);
+        // reviews.add(review2);
+        // reviews.add(review3);
     }
 
 
@@ -48,6 +54,42 @@ public class DataServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    //         Query query = new Query("Task").addSort("timestamp", SortDirection.DESCENDING);
+
+    // DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    // PreparedQuery results = datastore.prepare(query);
+
+    // List<Task> tasks = new ArrayList<>();
+    // for (Entity entity : results.asIterable()) {
+    //   long id = entity.getKey().getId();
+    //   String title = (String) entity.getProperty("title");
+    //   long timestamp = (long) entity.getProperty("timestamp");
+
+    //   Task task = new Task(id, title, timestamp);
+    //   tasks.add(task);
+    // }
+
+    // Gson gson = new Gson();
+
+    // response.setContentType("application/json;");
+    // response.getWriter().println(gson.toJson(tasks));
+
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+        Query query = new Query("Review");
+
+        PreparedQuery results = datastore.prepare(query);
+
+        ArrayList<Review> reviews = new ArrayList<Review>();
+
+        for(Entity entity : results.asIterable()) {
+            String name = (String) entity.getProperty("name");
+            String reviewText = (String) entity.getProperty("reviewText");
+
+            Review review = new Review(name, reviewText);
+            reviews.add(review);
+        }
+
         String json = listToJson(reviews);
 
         response.setContentType("application/json;");
@@ -56,8 +98,16 @@ public class DataServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Review newReview = new Review(request.getParameter("name"), request.getParameter("review"));
-        reviews.add(newReview);
+        // Review newReview = new Review(request.getParameter("name"), request.getParameter("review"));
+        // reviews.add(newReview);
+
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+        Entity newReview = new Entity("Review");
+        newReview.setProperty("name", request.getParameter("name"));
+        newReview.setProperty("reviewText", request.getParameter("review"));
+
+        datastore.put(newReview);
 
         response.sendRedirect("/reviews.html");
     }
