@@ -67,3 +67,10 @@ function addRandomGreeting()
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+async function userLogin()
+{
+    const response = await fetch('/login');
+    const message = await response.text();
+    document.getElementById('login-message').innerHTML = message;
+}

@@ -21,9 +21,9 @@ body {
 #login-message {
     font-family: Helvetica, Verdana, sans-serif;
     /* text-align: right; */
-    right: 15px;
+    right: 10px;
     position: absolute;
-    top: 1px;
+    top: 0px;
 }
 
 #logo-box {
