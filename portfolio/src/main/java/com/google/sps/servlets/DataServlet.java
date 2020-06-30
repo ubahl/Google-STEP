@@ -14,6 +14,12 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,39 +32,53 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    private ArrayList<Review> reviews;
-  
-    @Override
-    public void init() {
-        reviews = new ArrayList<Review>();
-        Review review1 = new Review("ubahl", "This is a great website!");
-        Review review2 = new Review("natalie", "I need boba. This website is good.");
-        Review review3 = new Review("sanya", "How did I get here");
-        reviews.add(review1);
-        reviews.add(review2);
-        reviews.add(review3);
-    }
 
-
+    /* Convert an ArrayList of Review objects to JSON */
     private String listToJson(ArrayList<Review> alist) {
         Gson gson = new Gson();
         String json = gson.toJson(alist);
         return json;
     }
 
+    /* On the GET request, retrieves all the comments from Datastore and writes them in JSON */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String json = listToJson(reviews);
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
+        // Retrieves the Review comments with a Query
+        Query query = new Query("Review").addSort("timestamp", SortDirection.DESCENDING);
+        PreparedQuery results = datastore.prepare(query);
+
+        // Converts the comments to Review objects and temporarily stores them
+        ArrayList<Review> reviews = new ArrayList<Review>();
+
+        for(Entity entity : results.asIterable()) {
+            String name = (String) entity.getProperty("name");
+            String reviewText = (String) entity.getProperty("reviewText");
+
+            Review review = new Review(name, reviewText);
+            reviews.add(review);
+        }
+
+        // Converts and sends them as JSON
+        String json = listToJson(reviews);
         response.setContentType("application/json;");
         response.getWriter().println(json);
     }
 
+    /* On the POST command, stores the name and review as a Review entity in Datastore */
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Review newReview = new Review(request.getParameter("name"), request.getParameter("review"));
-        reviews.add(newReview);
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
+        // Creates Review entity
+        Entity newReview = new Entity("Review");
+        newReview.setProperty("name", request.getParameter("name"));
+        newReview.setProperty("reviewText", request.getParameter("review"));
+        newReview.setProperty("timestamp", System.currentTimeMillis()); 
+
+        // Store in Datastore and redirects back to Reviews page (where GET command activates and displays the review)
+        datastore.put(newReview);
         response.sendRedirect("/reviews.html");
     }
 }

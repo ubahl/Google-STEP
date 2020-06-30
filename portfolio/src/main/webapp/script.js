@@ -26,34 +26,35 @@ async function getRandomMessage() {
   document.getElementById('top-text').innerText = message;
 }
 
-/* gets the reviews from /data servlet */
+/* gets the reviews and reviewer name from /data servlet */
 async function getReviewData() {
   const response = await fetch('/data');
   const message = await response.json();
   reviewBox = document.getElementById('white-background');
 
   for(var i = 0; i < message.length; i++) {
-    // reviewBox.innerHTML += "<div id='review-box'> <p id='review-text'>" + message[i] + "</p></div>";
+    // add text
     newComment = document.createElement('div');
     newComment.setAttribute('id', 'review-text');
     newComment.innerText = message[i]['reviewText'];
 
+    // add reviewer info
     newUser = document.createElement('div');
     newUser.setAttribute('id', 'reviewer-info');
     newUser.innerText = message[i]['name'];
     
+    // add review box
     newBox = document.createElement('p');
     newBox.setAttribute('id', 'review-box');
     
+    // add reviewer info and text to box, then add box to page
     newBox.appendChild(newUser);
     newBox.appendChild(newComment);
     reviewBox.appendChild(newBox);
   }
 }
 
-/**
- * Adds a random greeting to the page.
- */
+/* Adds a random greeting to the page. */
 function addRandomGreeting() 
 {
   const greetings =
@@ -65,4 +66,11 @@ function addRandomGreeting()
   // Add it to the page.
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
+}
+
+async function userLogin()
+{
+    const response = await fetch('/login');
+    const message = await response.text();
+    document.getElementById('login-message').innerHTML = message;
 }
