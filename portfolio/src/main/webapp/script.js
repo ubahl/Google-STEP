@@ -71,6 +71,14 @@ function addRandomGreeting()
 async function userLogin()
 {
     const response = await fetch('/login');
-    const message = await response.text();
-    document.getElementById('login-message').innerHTML = message;
+    const message = await response.json();
+    console.log(message);
+    loginMessage = document.getElementById('login-message');
+
+    if(message['loggedIn']) {
+        loginMessage.innerHTML = "<p>Hello " + message['email'] + ", <a href=\"" + message['url'] + "\">logout</a>.</p>";
+    }
+    else {
+        loginMessage.innerHTML = "<p>Login <a href=\"" + message['url'] + "\">here</a>.</p>";
+    }
 }
