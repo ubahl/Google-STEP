@@ -13,41 +13,41 @@
 // limitations under the License.
 
 
-/* changes current window to reviews.html */
+/* Changes current window to reviews.html. */
 function reviewsPage()
 {
     window.location.href = "reviews.html";
 }
 
-/* gets a random welcome message from /welcome serverlet and displays it in the toptext */
+/* Gets a random welcome message from /welcome serverlet and displays it in the toptext. */
 async function getRandomMessage() {
   const response = await fetch('/welcome');
   const message = await response.text();
   document.getElementById('top-text').innerText = message;
 }
 
-/* gets the reviews and reviewer name from /data servlet */
+/* Gets the reviews and reviewer name from /data servlet. */
 async function getReviewData() {
   const response = await fetch('/data');
   const message = await response.json();
   reviewBox = document.getElementById('white-background');
 
   for(var i = 0; i < message.length; i++) {
-    // add text
+    // Add text.
     newComment = document.createElement('div');
     newComment.setAttribute('id', 'review-text');
     newComment.innerText = message[i]['reviewText'];
 
-    // add reviewer info
+    // Add reviewer info.
     newUser = document.createElement('div');
     newUser.setAttribute('id', 'reviewer-info');
     newUser.innerText = message[i]['name'];
     
-    // add review box
+    // Add review box
     newBox = document.createElement('p');
     newBox.setAttribute('id', 'review-box');
     
-    // add reviewer info and text to box, then add box to page
+    // Add reviewer info and text to box, then add box to page
     newBox.appendChild(newUser);
     newBox.appendChild(newComment);
     reviewBox.appendChild(newBox);
@@ -71,6 +71,14 @@ function addRandomGreeting()
 async function userLogin()
 {
     const response = await fetch('/login');
-    const message = await response.text();
-    document.getElementById('login-message').innerHTML = message;
+    const message = await response.json();
+    console.log(message);
+    loginMessage = document.getElementById('login-message');
+
+    if(message['loggedIn']) {
+        loginMessage.innerHTML = "<p>Hello " + message['email'] + ", <a href=\"" + message['url'] + "\">logout</a>.</p>";
+    }
+    else {
+        loginMessage.innerHTML = "<p>Login <a href=\"" + message['url'] + "\">here</a>.</p>";
+    }
 }
