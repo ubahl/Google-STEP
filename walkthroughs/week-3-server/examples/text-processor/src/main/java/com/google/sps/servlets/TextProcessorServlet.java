@@ -30,7 +30,7 @@ public final class TextProcessorServlet extends HttpServlet {
     // Get the input from the form.
     String text = getParameter(request, "text-input", "");
     boolean upperCase = Boolean.parseBoolean(getParameter(request, "upper-case", "false"));
-    boolean sort = Boolean.parseBoolean(getParameter(request, "sort", "false"));    
+    boolean sort = Boolean.parseBoolean(getParameter(request, "sort", "false"));
 
     // Convert the text to upper case.
     if (upperCase) {
