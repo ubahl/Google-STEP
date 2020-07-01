@@ -13,19 +13,17 @@ body {
 }
 
 #top-text {
-    font-family: Helvetica, Verdana, sans-serif;
     display: inline-block;
+    font-family: Helvetica, Verdana, sans-serif;
     top: 5px;
 }
 
 #login-message {
-    font-family: Helvetica, Verdana, sans-serif;
-    /* text-align: right; */
-    right:  20px;
-    position: absolute;
-    top: 0px;
-    /* float: right;  */
     display: inline-block;
+    font-family: Helvetica, Verdana, sans-serif;
+    position: absolute;
+    right:  20px;
+    top: 0px;
 }
 
 #logo-box {
@@ -36,62 +34,46 @@ body {
 }
 
 /* Search. */
-
-/* #box {
-    text-align: center;
-}
-
-#search-box {
-    border: 3px solid gainsboro;
-    border-radius: 50px;
-    height: 30px;
-    width: 450px;  
-}
-
-#search-button {
-    height: 30px;
-    width: 30px;
-    position: absolute;
-    color: white;
-} */
-
 #search-div {
-    position: absolute;
-    left: 50%;
-    /* padding-top: 5px; */
+    background: white;
     border: 3px solid gainsboro;
     border-radius: 50px;
     height: 30px;
-    width: 450px;  
-    background: white;
+    left: 50%;
+    position: absolute;
     transform: translate(-52%);
+    width: 450px;  
 }
 
 #search-button {
-    color: grey;
-    background: white;
-    float: right;
-    justify-content: center; 
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    display: flex;
     align-items: center;
-    text-decoration: none;
+    background: white;
+    border-radius: 50%;
+    color: grey;
+    display: flex;
+    float: right;
+    height: 25px;
+    justify-content: center; 
     padding-right: 10px;
     padding-top: 3px;
+    text-decoration: none;
+    width: 25px;
+}
+
+#search-button:hover {
+    color: black;
 }
 
 #search-text
 {
-    border: none;
     background: none;
-    outline: none;
+    border: none;
     float: left;
-    padding-left: 15px;
     font-size: 16px;
-    width: 380px;
+    padding-left: 15px;
     padding-top: 6px;
+    outline: none; 
+    width: 380px;
 }
 
 /* Reviews. */

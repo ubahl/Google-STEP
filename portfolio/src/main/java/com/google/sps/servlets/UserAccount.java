@@ -17,7 +17,7 @@ public class UserAccount {
     String userID = "";
     String url = "";
 
-
+    /* Instantiate a logged in User. */
     public UserAccount(UserService userService, User curr_user, String url) {
         loggedIn = true;
         nickname = curr_user.getNickname();
@@ -26,6 +26,7 @@ public class UserAccount {
         this.url = userService.createLogoutURL(url);
     }
 
+    /* Instantiate an unknown User. */
     public UserAccount(UserService userService, String url) {
         boolean loggedIn = false;
         String nickname = "";

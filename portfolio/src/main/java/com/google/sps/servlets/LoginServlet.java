@@ -20,6 +20,7 @@ public class LoginServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     UserService userService = UserServiceFactory.getUserService();
 
+    // If the user is logged in, return a JSON of the user account information with logout url.
     if (userService.isUserLoggedIn()) {
         String urlToRedirectToAfterUserLogsOut = "/";
         User user = userService.getCurrentUser();
@@ -29,6 +30,7 @@ public class LoginServlet extends HttpServlet {
         String json = userAccount.toJson();
         response.getWriter().println(json);
     } 
+    // If the user is not logged in, return a JSON of a user account information (empty) with login url.
     else {
         String urlToRedirectToAfterUserLogsIn = "/";
         UserAccount userAccount = new UserAccount(userService, urlToRedirectToAfterUserLogsIn);
