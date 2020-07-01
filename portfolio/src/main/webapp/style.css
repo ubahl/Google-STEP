@@ -14,16 +14,18 @@ body {
 
 #top-text {
     font-family: Helvetica, Verdana, sans-serif;
-    display: inline;
+    display: inline-block;
     top: 5px;
 }
 
 #login-message {
     font-family: Helvetica, Verdana, sans-serif;
     /* text-align: right; */
-    right: 10px;
+    right: 15px;
     position: absolute;
     top: 0px;
+    /* float: right;  */
+    display: inline-block;
 }
 
 #logo-box {
@@ -33,7 +35,9 @@ body {
     width: 200;
 }
 
-#box {
+/* Search. */
+
+/* #box {
     text-align: center;
 }
 
@@ -46,14 +50,41 @@ body {
 
 #search-button {
     height: 30px;
-    right: 50px;
     width: 30px;
+    position: absolute;
+    color: white;
+} */
+
+#search-div {
+    position: absolute;
+    left: 50%;
+    padding-top: 10px;
+    border: 3px solid gainsboro;
+    border-radius: 50px;
+    height: 30px;
+    width: 450px;  
+    background: white;
+    transform: translate(-50%);
 }
 
+#search-button {
+    color: DarkGrey;
+    background: DarkGrey;
+    float: right;
+    position: flex;
+}
+
+#search-text
+{
+
+}
+
+/* Reviews. */
 #reviews-button {
     bottom: 20px;
     left: 50%;
     position: absolute;
+    transform: translate(-50%);
 }
 
 #white-background {

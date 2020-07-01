@@ -8,19 +8,29 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   </head>
   <body>
-      <script> getRandomMessage(); </script>
-      <p id="top-text"></p>
+      <div>
+        <script> getRandomMessage(); </script>
+        <p id="top-text"></p>
 
-      <script> userLogin(); </script>
-      <p id="login-message"></p>
+        <script> userLogin(); </script>
+        <p id="login-message"></p>
+      <div>
 
       <img src="/images/bobabudlogo.png" alt="Boba Bud Logo" id="logo-box">
 
-      <div id="box">
-        <input type="text" placeholder="enter your zip code" id="search-box">
+      <!-- <div id="box">
+        <input type="text" placeholder=" enter your zip code" id="search-box">
         <button type="submit" id="search-button">
           <i class="fa fa-search"></i>
+          <img src="/images/search_image.png" />
         </button>
+      </div> -->
+
+      <div id="search-div">
+        <input id="search-text" type="text" name="text" placeholder="enter your zip code">
+        <a class="search-button" href="/nearby.html">
+            <i class="fa fa-search"></i>
+        </a>
       </div>
 
       <div id="reviews-button">
