@@ -58,7 +58,7 @@ body {
 #search-div {
     position: absolute;
     left: 50%;
-    padding-top: 10px;
+    /* padding-top: 5px; */
     border: 3px solid gainsboro;
     border-radius: 50px;
     height: 30px;
@@ -68,15 +68,18 @@ body {
 }
 
 #search-button {
-    color: DarkGrey;
-    background: DarkGrey;
+    color: grey;
+    background: white;
     float: right;
     justify-content: center; 
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     display: flex;
     align-items: center;
+    text-decoration: none;
+    padding-right: 10px;
+    padding-top: 3px;
 }
 
 #search-text
@@ -88,6 +91,7 @@ body {
     padding-left: 15px;
     font-size: 16px;
     width: 380px;
+    padding-top: 6px;
 }
 
 /* Reviews. */
