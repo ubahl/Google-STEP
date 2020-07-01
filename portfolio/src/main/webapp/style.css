@@ -21,7 +21,7 @@ body {
 #login-message {
     font-family: Helvetica, Verdana, sans-serif;
     /* text-align: right; */
-    right: 15px;
+    right:  20px;
     position: absolute;
     top: 0px;
     /* float: right;  */
@@ -64,19 +64,30 @@ body {
     height: 30px;
     width: 450px;  
     background: white;
-    transform: translate(-50%);
+    transform: translate(-52%);
 }
 
 #search-button {
     color: DarkGrey;
     background: DarkGrey;
     float: right;
-    position: flex;
+    justify-content: center; 
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
 }
 
 #search-text
 {
-
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding-left: 15px;
+    font-size: 16px;
+    width: 380px;
 }
 
 /* Reviews. */
