@@ -5,16 +5,61 @@ body {
 #logo-box {
     height: 68.5px;
     width: 245px;
-    position: relative;
     margin-left: 50%;
     margin-right: 50%;
     transform: translate(-50%);
 }
 
+/* Search Box */
+#search-div {
+    background: white;
+    border: 3px solid gainsboro;
+    border-radius: 50px;
+    height: 30px;
+    margin-left: 50%;
+    margin-right: 50%;
+    transform: translate(-50%);
+    width: 450px; 
+    margin-top: 80px;
+    margin-bottom: 50px; 
+}
+
+#search-button {
+    align-items: center;
+    background: white;
+    border-radius: 50%;
+    color: grey;
+    display: flex;
+    float: right;
+    height: 25px;
+    justify-content: center; 
+    padding-right: 10px;
+    padding-top: 3px;
+    text-decoration: none;
+    width: 25px;
+}
+
+#search-button:hover {
+    color: black;
+}
+
+#search-text
+{
+    background: none;
+    border: none;
+    float: left;
+    font-size: 16px;
+    padding-left: 15px;
+    padding-top: 6px;
+    outline: none; 
+    width: 380px;
+}
+
 /* Cards. */
 #all-cards {
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 660px;
     display: flex;
     flex-wrap: wrap;
 }
