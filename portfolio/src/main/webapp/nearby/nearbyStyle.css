@@ -5,6 +5,8 @@ body {
 #all-cards {
     margin-left: 25%;
     margin-right: 25%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .card-background {
@@ -13,6 +15,7 @@ body {
     background-color: snow;
     border-radius: 15px;
     position: relative;
+    margin: 10px;
 }
 
 .card-image {
@@ -29,4 +32,5 @@ body {
     top: 180px;
     left: 10px;
     font-size: 16px;
+    font-weight: bold;
 }
