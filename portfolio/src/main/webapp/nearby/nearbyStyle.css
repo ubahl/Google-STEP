@@ -2,6 +2,16 @@ body {
     background-color: #ffead6;
 }
 
+#logo-box {
+    height: 68.5px;
+    width: 245px;
+    position: relative;
+    margin-left: 50%;
+    margin-right: 50%;
+    transform: translate(-50%);
+}
+
+/* Cards. */
 #all-cards {
     margin-left: 25%;
     margin-right: 25%;
