@@ -21,7 +21,7 @@ body {
   margin-right: 50%;
   margin-top: 80px;
   transform: translate(-50%);
-  width: 450px; 
+  width: 450px;
 }
 
 #search-button {
@@ -32,7 +32,7 @@ body {
   display: flex;
   float: right;
   height: 25px;
-  justify-content: center; 
+  justify-content: center;
   padding-right: 10px;
   padding-top: 3px;
   text-decoration: none;
@@ -50,7 +50,7 @@ body {
   font-size: 16px;
   padding-left: 15px;
   padding-top: 6px;
-  outline: none; 
+  outline: none;
   width: 380px;
 }
 
