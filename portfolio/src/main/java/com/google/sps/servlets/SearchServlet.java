@@ -94,8 +94,5 @@ public class SearchServlet extends HttpServlet {
         String json = gson.toJson(alist);
         return json;
     }
-
-
-
-
+    
 }
