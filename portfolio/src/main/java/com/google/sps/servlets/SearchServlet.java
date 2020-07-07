@@ -41,6 +41,7 @@ import com.google.maps.model.RankBy;
 public class SearchServlet extends HttpServlet {
     Key myKey;
     GeoApiContext geoApiContext;
+    final int SEARCH_RADIUS = 25000; // Radius to search for boba shops
 
     @Override
     public void init() {
@@ -56,7 +57,7 @@ public class SearchServlet extends HttpServlet {
         LatLng latLng = getLatLng(zipCode);
 
         // Searches this lattitude and longitude for boba places nearby.
-        ArrayList<StoreCard> cards = getCardsInfo(latLng, "boba", 25000);
+        ArrayList<StoreCard> cards = getCardsInfo(latLng, "boba", SEARCH_RADIUS);
 
         // Convert to JSON and send.
         String json = listToJson(cards);

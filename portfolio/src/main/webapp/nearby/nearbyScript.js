@@ -12,8 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-async function getSearchResults()
-{
+async function getSearchResults() {
     // Get the text from the search box.
     var zipCode = document.getElementById("search-text").value;
     console.log(zipCode);
@@ -26,5 +25,5 @@ async function getSearchResults()
     const message = await response.json();
     console.log(message);
 
-    // Add and make the cards (TODO).
+    // TODO: Add and make the cards.
 }

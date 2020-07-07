@@ -17,8 +17,7 @@ public class StoreCard {
     URL icon;
     float rating = 0.0f;
 
-    public StoreCard(PlacesSearchResult store)
-    {
+    public StoreCard(PlacesSearchResult store) {
         placeId = store.placeId;
         name = store.name;
         icon = store.icon;
