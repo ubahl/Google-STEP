@@ -34,14 +34,9 @@ import com.google.maps.NearbySearchRequest;
 import com.google.maps.PlacesApi;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.gson.Gson;
+import com.google.maps.model.RankBy;
 
-// import java.io.BufferedReader;
-// import java.io.IOException;
-// import java.io.InputStreamReader;
-// import java.net.HttpURLConnection;
-// import java.net.URL;
-
-// Servlet that accesses Google Places API for Place Search - Nearby Search 
+/* Servlet that accesses Google Places API and Google Geocoding API to search for nearby boba places */
 @WebServlet("/search")
 public class SearchServlet extends HttpServlet {
     Key myKey;
@@ -68,38 +63,10 @@ public class SearchServlet extends HttpServlet {
         response.setContentType("application/json");
         response.getWriter().println(json); 
 
-        // // Gets the zip code sent from the search bar.
-        // String zipCode = request.getParameter("zipCode");
-
-        // // Searches the Google Maps Platform for places nearby
-        // // Place Search API https://developers.google.com/places/web-service/search (Nearby Search)
-
-        // // Inputs:
-        // // API Key - accessed from Key class to keep Key private
-        // String key = apiKey.getKey();
-
-        // // Location - converts zip code given to lat and long
-        // String location = getLocation(zipCode, key);
-
-        // // Radius - 15 miles (around 25000 meters)
-        // String radius = "25000";
-
-        // // Name - boba (search for boba)
-        // String name = "boba";
-
-        
-
-        
-        // // When clicked on, do deeper Place Details search
-
-
-        // // Return Boba Places
-        // response.setContentType("application/json");
-        // response.getWriter().println(location); 
-
     }
 
-    /* Gets lattitude and logitude of zip code */
+    /* Gets lattitude and logitude of zip code 
+       Uses Geocoding API https://developers.google.com/maps/documentation/geocoding/intro (Region Biasing)*/
     public LatLng getLatLng(String zipCode) {
         GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, zipCode).awaitIgnoreError();
         return results[0].geometry.location;
@@ -107,10 +74,10 @@ public class SearchServlet extends HttpServlet {
 
     /* Searches this lattitude and longitude for boba places nearby
        Place Search API https://developers.google.com/places/web-service/search (Nearby Search) */
-    public ArrayList<StoreCard> getCardsInfo(LatLng latLng, String name, int radius) {
+    public ArrayList<StoreCard> getCardsInfo(LatLng latLng, String nameToSearch, int radiusToSearch) {
 
         NearbySearchRequest nearbyShops = PlacesApi.nearbySearchQuery(geoApiContext, latLng);
-        nearbyShops.name("boba").radius(25000);
+        nearbyShops.name(nameToSearch).radius(radiusToSearch);
         PlacesSearchResult[] results = nearbyShops.awaitIgnoreError().results;
 
         ArrayList<StoreCard> cards = new ArrayList<StoreCard>();
@@ -132,44 +99,3 @@ public class SearchServlet extends HttpServlet {
 
 
 }
-
-//     // Uses Geocoding API https://developers.google.com/maps/documentation/geocoding/intro#RegionCodes (Region Basing)
-//     public String getLocation(String zipCode, String key) {
-//         // Build URL
-//         String stringURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zipCode + "&key=" + key;
-
-//         HttpURLConnection con;
-
-//         try {
-
-//             URL url;
-//             try {
-//                 url = new URL(stringURL);
-//             } catch(MalformedURLException ex) {
-//             con = (HttpURLConnection) url.openConnection();
-
-//             con.setRequestMethod("GET");
-
-//             StringBuilder content;
-
-//             try (BufferedReader in = new BufferedReader(
-//                     new InputStreamReader(con.getInputStream()))) {
-
-//                 String line;
-//                 content = new StringBuilder();
-
-//                 while ((line = in.readLine()) != null) {
-
-//                     content.append(line);
-//                     content.append(System.lineSeparator());
-//                 }
-//             }
-
-//             return content.toString();
-
-//         } finally {
-
-//             con.disconnect();
-//         }
-//     }
-// }
