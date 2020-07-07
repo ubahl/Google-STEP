@@ -23,13 +23,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import com.google.maps.GeocodingApi;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeoApiContext.Builder;
 import com.google.maps.GeocodingApi.Response;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
+
+import com.google.maps.NearbySearchRequest;
+import com.google.maps.PlacesApi;
+import com.google.maps.model.PlacesSearchResult;
+import com.google.gson.Gson;
 
 // import java.io.BufferedReader;
 // import java.io.IOException;
@@ -46,32 +50,23 @@ public class SearchServlet extends HttpServlet {
     @Override
     public void init() {
         myKey = new Key();
-        // geoApiContextBuilder = GeoApiContext.Builder();
-        // geoApiContextBuilder.apiKey(apiKey.getKey());
-        // geoApiContext = geoApiContextBuilder.build();
-
-        // GeoApiContext.Builder builder = GeoApiContext.Builder(null);
-
-        // geoApiContext = builder.apiKey(myKey.getKey()).build();
-        // geoApiContext = new GeoApiContext().setApiKet(myKey.getKey());
-
         geoApiContext = new GeoApiContext.Builder().apiKey(myKey.getKey()).build();
     } 
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Gets the zip code sent from the search bar.
+
+        // Gets the zip code sent from the search bar and converts it to lattitude and longitude.
         String zipCode = request.getParameter("zipCode");
+        LatLng latLng = getLatLng(zipCode);
 
-        // GeocodingApi zipGeocode = new GeocodingApi();
-        // zipGeocode.geocode(geoApiContext, zipCode);
+        // Searches this lattitude and longitude for boba places nearby.
+        ArrayList<StoreCard> cards = getCardsInfo(latLng, "boba", 25000);
 
-        GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, zipCode).awaitIgnoreError();
-
-
-
-        response.setContentType("text");
-        response.getWriter().println(results[0].geometry.location); 
+        // Convert to JSON and send.
+        String json = listToJson(cards);
+        response.setContentType("application/json");
+        response.getWriter().println(json); 
 
         // // Gets the zip code sent from the search bar.
         // String zipCode = request.getParameter("zipCode");
@@ -103,6 +98,39 @@ public class SearchServlet extends HttpServlet {
         // response.getWriter().println(location); 
 
     }
+
+    /* Gets lattitude and logitude of zip code */
+    public LatLng getLatLng(String zipCode) {
+        GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, zipCode).awaitIgnoreError();
+        return results[0].geometry.location;
+    }
+
+    /* Searches this lattitude and longitude for boba places nearby
+       Place Search API https://developers.google.com/places/web-service/search (Nearby Search) */
+    public ArrayList<StoreCard> getCardsInfo(LatLng latLng, String name, int radius) {
+
+        NearbySearchRequest nearbyShops = PlacesApi.nearbySearchQuery(geoApiContext, latLng);
+        nearbyShops.name("boba").radius(25000);
+        PlacesSearchResult[] results = nearbyShops.awaitIgnoreError().results;
+
+        ArrayList<StoreCard> cards = new ArrayList<StoreCard>();
+        for (int i = 0; i < results.length; i++) {
+            StoreCard newCard = new StoreCard(results[i]);
+            cards.add(newCard);
+        }
+        return cards;
+    }
+
+    /* Convert an ArrayList of StoreCard objects to JSON */
+    private String listToJson(ArrayList<StoreCard> alist) {
+        Gson gson = new Gson();
+        String json = gson.toJson(alist);
+        return json;
+    }
+
+
+
+
 }
 
 //     // Uses Geocoding API https://developers.google.com/maps/documentation/geocoding/intro#RegionCodes (Region Basing)
