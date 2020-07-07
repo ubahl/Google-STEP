@@ -6,8 +6,8 @@ body {
   height: 68.5px;
   margin-left: 50%;
   margin-right: 50%;
-  width: 245px;
   transform: translate(-50%);
+  width: 245px; 
 }
 
 /* Search Box */

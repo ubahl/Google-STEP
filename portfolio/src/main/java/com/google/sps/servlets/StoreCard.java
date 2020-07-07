@@ -2,8 +2,8 @@
 Holds the information that goes onto the search results cards:
 - Place ID
 - Store Name
-- Image (TODO)
-- Rating (TODO)
+- Image
+- Rating
 */
 
 package com.google.sps.servlets;

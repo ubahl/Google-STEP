@@ -12,39 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// import {key} from "./googleapikey.js";
-// const { key } = require('./googleapikey');
-
 async function getSearchResults()
 {
-    // get what was searched
+    // Get the text from the search box.
     var zipCode = document.getElementById("search-text").value;
     console.log(zipCode);
 
-    // post it to /search
+    // Use a GET request to send it to /search.
     var url = '/search?zipCode=' + zipCode;
     const response = await fetch(url);
 
-    // retrieve response
-    const message = await response.text();
+    // Retrieve response of nearby stores and their details.
+    const message = await response.json();
     console.log(message);
 
-    // // get lattitude and logitude of zip code
-    // var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zipCode + "&key=" + key;
-    // const reponse = await fetch(url);
-    // const message = await response.json();
-    // console.log(message);
-
-    // // post it to /search
-    // var url = '/search?zipCode=' + zipCode;
-    // const response = await fetch(url);
-
-    // // retrieve response
-    // const message = await response.text();
-    // console.log(message);
-
-    // For card: picture, store name, rating, place id
-    // add and make the cards
-
-
+    // Add and make the cards (TODO).
 }
