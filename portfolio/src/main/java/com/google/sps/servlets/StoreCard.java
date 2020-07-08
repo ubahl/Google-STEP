@@ -21,7 +21,7 @@ public class StoreCard {
     String placeId ="";
     String name = "";
     float rating = 0.0f;
-    String encodedPhoto;
+    String photoString;
 
     public StoreCard(PlacesSearchResult store, GeoApiContext geoApiContext) {
         placeId = store.placeId;
@@ -30,10 +30,17 @@ public class StoreCard {
 
         // Get photo from Place API
         Photo[] photos = store.photos;
-        String photoRef = photos[0].photoReference;
-        PhotoRequest request = PlacesApi.photo(geoApiContext, photoRef).maxHeight(180).maxWidth(180);
-        ImageResult photoResult = request.awaitIgnoreError();
-        byte[] photoBytes = photoResult.imageData;
-        encodedPhoto = new String(Base64.getEncoder().encode(photoBytes));
+
+        if (photos == null) {
+            // Use a stock image if no photos.
+            photoString = "https://ghspawprint.com/wp-content/uploads/2019/03/bubbletea.png";
+        } else {
+            String photoRef = photos[0].photoReference;
+            PhotoRequest request = PlacesApi.photo(geoApiContext, photoRef).maxHeight(180).maxWidth(180);
+            ImageResult photoResult = request.awaitIgnoreError();
+            byte[] photoBytes = photoResult.imageData;
+            String encodedPhoto = new String(Base64.getEncoder().encode(photoBytes));
+            photoString = "data:image/png;base64," + encodedPhoto;
+        }
     }
 }
