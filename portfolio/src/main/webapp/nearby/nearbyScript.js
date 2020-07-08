@@ -39,6 +39,9 @@ async function getSearchResults() {
         // Gets information from the message from the server.
         var name = message[i]['name'];
         var placeId = message[i]['placeId'];
+        var icon = message[i]['icon'];
+        var encodedPhotoString = message[i]['encodedPhoto'];
+        var photoLoc = "data:image/png;base64," + encodedPhotoString;
 
         // Creates a new card, as well as a new image and name element for the card. Sets a placeid attribute in the card.
         newCard = document.createElement('div');
@@ -46,7 +49,7 @@ async function getSearchResults() {
         newCard.setAttribute('placeId', placeId);
         
         newIcon = document.createElement('img');
-        newIcon.setAttribute('src', '/images/teaspoon.jpg');
+        newIcon.setAttribute('src', photoLoc);
         newIcon.setAttribute('class', 'card-image');
         newIcon.setAttribute('alt', name);
 
