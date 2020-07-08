@@ -13,8 +13,8 @@
 // limitations under the License.
 
 async function getSearchResults() {
-    // Get the text from the search box.
-    var zipCode = document.getElementById("search-text").value;
+    // Get the text from local storage.
+    var zipCode = window.localStorage.getItem('searchText');
     console.log(zipCode);
 
     // Use a GET request to send it to /search.
@@ -25,5 +25,35 @@ async function getSearchResults() {
     const message = await response.json();
     console.log(message);
 
-    // TODO: Add and make the cards.
+    // Add and make the cards.
+    allCards = document.getElementById('all-cards');
+
+    // Clear previous cards
+    allCards.innerHTML = "";
+
+    for (var i = 0; i < message.length; i++) {
+        // Gets information from the message from the server.
+        var name = message[i]['name'];
+        var placeId = message[i]['placeId'];
+        var photoString = message[i]['photoString'];
+
+        // Creates a new card, as well as a new image and name element for the card. Sets a placeid attribute in the card.
+        newCard = document.createElement('div');
+        newCard.setAttribute('class', 'card-background');
+        newCard.setAttribute('placeId', placeId);
+        
+        newIcon = document.createElement('img');
+        newIcon.setAttribute('src', photoString);
+        newIcon.setAttribute('class', 'card-image');
+        newIcon.setAttribute('alt', name);
+
+        newName = document.createElement('p');
+        newName.setAttribute('class', 'card-name');
+        newName.innerText = name;
+
+        // Adds the new card and its elements to the page.
+        newCard.appendChild(newIcon);
+        newCard.appendChild(newName);
+        allCards.appendChild(newCard);
+    }
 }

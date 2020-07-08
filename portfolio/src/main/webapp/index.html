@@ -5,7 +5,6 @@
     <title>Boba Bud</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-    <script src="nearby/nearbyScript.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   </head>
   <body>
@@ -25,8 +24,7 @@
       <!-- Search bar and button. -->
       <div id="search-div">
         <input id="search-text" type="text" name="text" placeholder="enter your zip code"/>
-        <a id="search-button" onclick="getSearchResults()"> 
-            <!-- href="nearby/nearby.html" -->
+        <a id="search-button" href="nearby/nearby.html" onclick="storeSearchText()"> 
             <i class="fa fa-search"></i>
         </a>
       </div>

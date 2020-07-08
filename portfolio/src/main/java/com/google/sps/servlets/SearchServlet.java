@@ -83,7 +83,7 @@ public class SearchServlet extends HttpServlet {
 
         ArrayList<StoreCard> cards = new ArrayList<StoreCard>();
         for (int i = 0; i < results.length; i++) {
-            StoreCard newCard = new StoreCard(results[i]);
+            StoreCard newCard = new StoreCard(results[i], geoApiContext);
             cards.add(newCard);
         }
         return cards;
