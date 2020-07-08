@@ -20,20 +20,17 @@ import com.google.maps.ImageResult;
 public class StoreCard {
     String placeId ="";
     String name = "";
-    URL icon;
     float rating = 0.0f;
     String encodedPhoto;
-    // byte[] photo;
 
     public StoreCard(PlacesSearchResult store, GeoApiContext geoApiContext) {
         placeId = store.placeId;
         name = store.name;
-        icon = store.icon;
         rating = store.rating;
 
+        // Get photo from Place API
         Photo[] photos = store.photos;
         String photoRef = photos[0].photoReference;
-
         PhotoRequest request = PlacesApi.photo(geoApiContext, photoRef).maxHeight(180).maxWidth(180);
         ImageResult photoResult = request.awaitIgnoreError();
         byte[] photoBytes = photoResult.imageData;

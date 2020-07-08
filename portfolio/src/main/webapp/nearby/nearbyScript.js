@@ -13,9 +13,8 @@
 // limitations under the License.
 
 async function getSearchResults() {
-    // Get the text from the search box.
+    // Get the text from local storage.
     var zipCode = window.localStorage.getItem('searchText');
-    // var zipCode = document.getElementById("search-text").value;
     console.log(zipCode);
 
     // Use a GET request to send it to /search.
@@ -28,9 +27,6 @@ async function getSearchResults() {
 
     // Add and make the cards.
     allCards = document.getElementById('all-cards');
-    // var allCards = document.createElement('div');
-    // allCards.setAttribute('id', 'all-cards');
-    // document.body.appendChild(allCards);
 
     // Clear previous cards
     allCards.innerHTML = "";
@@ -39,7 +35,6 @@ async function getSearchResults() {
         // Gets information from the message from the server.
         var name = message[i]['name'];
         var placeId = message[i]['placeId'];
-        var icon = message[i]['icon'];
         var encodedPhotoString = message[i]['encodedPhoto'];
         var photoLoc = "data:image/png;base64," + encodedPhotoString;
 
@@ -62,29 +57,4 @@ async function getSearchResults() {
         newCard.appendChild(newName);
         allCards.appendChild(newCard);
     }
-
-//       const response = await fetch('/data');
-//   const message = await response.json();
-//   reviewBox = document.getElementById('white-background');
-
-//   for(var i = 0; i < message.length; i++) {
-//     // Add text.
-//     newComment = document.createElement('div');
-//     newComment.setAttribute('id', 'review-text');
-//     newComment.innerText = message[i]['reviewText'];
-
-//     // Add reviewer info.
-//     newUser = document.createElement('div');
-//     newUser.setAttribute('id', 'reviewer-info');
-//     newUser.innerText = message[i]['name'];
-    
-//     // Add review box
-//     newBox = document.createElement('p');
-//     newBox.setAttribute('id', 'review-box');
-    
-//     // Add reviewer info and text to box, then add box to page
-//     newBox.appendChild(newUser);
-//     newBox.appendChild(newComment);
-//     reviewBox.appendChild(newBox);
-//   }
 }

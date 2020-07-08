@@ -80,6 +80,7 @@ async function userLogin() {
     }
 }
 
+/* Stores the search text locally. */
 function storeSearchText() {
     var searchText = document.getElementById('search-text').value;
     window.localStorage.setItem('searchText', searchText);
