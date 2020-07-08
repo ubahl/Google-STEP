@@ -14,8 +14,7 @@
 
 
 /* Changes current window to reviews.html. */
-function reviewsPage()
-{
+function reviewsPage() {
     window.location.href = "reviews.html";
 }
 
@@ -55,8 +54,7 @@ async function getReviewData() {
 }
 
 /* Adds a random greeting to the page. */
-function addRandomGreeting() 
-{
+function addRandomGreeting() {
   const greetings =
       ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!', '안녕하세요!', 'नमस्ते'];
 
@@ -68,8 +66,7 @@ function addRandomGreeting()
   greetingContainer.innerText = greeting;
 }
 
-async function userLogin()
-{
+async function userLogin() {
     const response = await fetch('/login');
     const message = await response.json();
     console.log(message);
@@ -81,4 +78,9 @@ async function userLogin()
     else {
         loginMessage.innerHTML = "<p>Login <a href=\"" + message['url'] + "\">here</a>.</p>";
     }
+}
+
+function storeSearchText() {
+    var searchText = document.getElementById('search-text').value;
+    window.localStorage.setItem('searchText', searchText);
 }
