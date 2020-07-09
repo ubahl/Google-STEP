@@ -12,22 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-async function getSearchResults() {
+/* Get the user's location. */
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(getSearchResults);
+    } else {
+        document.getElementById("fail").innerText = "We can't find you!";
+    }
+}
+
+/* Send a GET request to the server with the search term and location. */
+async function getSearchResults(position) {
     // Get the text from local storage.
     var searchText = window.localStorage.getItem('searchText');
-    console.log(searchText);
+    console.log("Search Text: " + searchText);
 
-    // Use a GET request to send it to /search.
-    var url = '/search?searchText=' + searchText;
+    // Use a GET request to send text and location to /search.
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+    console.log("Lat: " + lat + "Lng: " + lng);
+    var url = '/search?searchText=' + searchText + "&lat=" + lat + "&lng=" + lng;
     const response = await fetch(url);
 
-    // Retrieve response of nearby stores and their details.
+    // // Retrieve response of nearby stores and their details.
     const message = await response.json();
-    console.log(message);
+    console.log(message);  
 
-    // Add and make the cards.
-    allCards = document.getElementById('all-cards');
+    makeAndShowCards(message);
+}
 
+/* Make the store cards and add them to the page. */
+function makeAndShowCards(message) {
+    var allCards = document.getElementById('all-cards');
     // Clear previous cards
     allCards.innerHTML = "";
 

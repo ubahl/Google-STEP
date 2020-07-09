@@ -58,38 +58,23 @@ public class SearchServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+        // Receive the parameters from the request.
         String searchText = request.getParameter("searchText");
+        Double lat = Double.parseDouble(request.getParameter("lat"));
+        Double lng = Double.parseDouble(request.getParameter("lng"));
 
-        // Converts IP address to lat and long.
-        LatLng latLng = getLatLngGeolocation();
+        LatLng latLng = new LatLng(lat, lng);
 
-        // Searches this lattitude and longitude for boba places nearby.
+        // Search the latitude and longitude for boba places nearby.
         ArrayList<StoreCard> cards = getCardsInfo(latLng, searchText, SEARCH_RADIUS);
 
         // Convert to JSON and send.
         String json = listToJson(cards);
         response.setContentType("application/json");
-        response.getWriter().println(json); 
-
+        response.getWriter().println(json);
     }
 
-    /* Gets lattitude and logitude of zip code 
-       Uses Geocoding API https://developers.google.com/maps/documentation/geocoding/intro (Region Biasing)*/
-    public LatLng getLatLngGeocoding(String zipCode) {
-        GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, zipCode).awaitIgnoreError();
-        return results[0].geometry.location;
-    }
-
-    /* Gets lattitude and logitude from IP address 
-       Uses Geolocation API https://www.javadoc.io/static/com.google.maps/google-maps-services/0.14.0/com/google/maps/GeolocationApi.html */
-    public LatLng getLatLngGeolocation() {
-        GeolocationApiRequest geoLocationRequest = GeolocationApi.newRequest(geoApiContext).CreatePayload();
-        GeolocationResult geolocationResult = geoLocationRequest.awaitIgnoreError();
-        return geolocationResult.location;
-
-    }
-
-    /* Searches this lattitude and longitude for boba places nearby
+    /* Searches the latitude and longitude for boba places nearby
        Place Search API https://developers.google.com/places/web-service/search (Nearby Search) */
     public ArrayList<StoreCard> getCardsInfo(LatLng latLng, String nameToSearch, int radiusToSearch) {
 
@@ -111,5 +96,5 @@ public class SearchServlet extends HttpServlet {
         String json = gson.toJson(alist);
         return json;
     }
-    
+
 }
