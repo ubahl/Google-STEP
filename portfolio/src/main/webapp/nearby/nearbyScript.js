@@ -36,7 +36,7 @@ async function getSearchResults(position) {
 
     // Reptrieve response of nearby stores and their details.
     const message = await response.json();
-    console.log(message);  
+    console.log(message);
 
     makeAndShowCards(message);
 }
