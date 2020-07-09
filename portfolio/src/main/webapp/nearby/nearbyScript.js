@@ -14,11 +14,11 @@
 
 async function getSearchResults() {
     // Get the text from local storage.
-    var zipCode = window.localStorage.getItem('searchText');
-    console.log(zipCode);
+    var searchText = window.localStorage.getItem('searchText');
+    console.log(searchText);
 
     // Use a GET request to send it to /search.
-    var url = '/search?zipCode=' + zipCode;
+    var url = '/search?searchText=' + searchText;
     const response = await fetch(url);
 
     // Retrieve response of nearby stores and their details.

@@ -36,6 +36,12 @@ import com.google.maps.model.PlacesSearchResult;
 import com.google.gson.Gson;
 import com.google.maps.model.RankBy;
 
+import com.google.maps.GeolocationApi;
+import com.google.maps.GeolocationApiRequest;
+import com.google.maps.model.GeolocationResult;
+
+import com.google.maps.errors.ApiException;
+
 /* Servlet that accesses Google Places API and Google Geocoding API to search for nearby boba places */
 @WebServlet("/search")
 public class SearchServlet extends HttpServlet {
@@ -52,12 +58,13 @@ public class SearchServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        // Gets the zip code sent from the search bar and converts it to lattitude and longitude.
-        String zipCode = request.getParameter("zipCode");
-        LatLng latLng = getLatLng(zipCode);
+        String searchText = request.getParameter("searchText");
+
+        // Converts IP address to lat and long.
+        LatLng latLng = getLatLngGeolocation();
 
         // Searches this lattitude and longitude for boba places nearby.
-        ArrayList<StoreCard> cards = getCardsInfo(latLng, "boba", SEARCH_RADIUS);
+        ArrayList<StoreCard> cards = getCardsInfo(latLng, searchText, SEARCH_RADIUS);
 
         // Convert to JSON and send.
         String json = listToJson(cards);
@@ -68,9 +75,18 @@ public class SearchServlet extends HttpServlet {
 
     /* Gets lattitude and logitude of zip code 
        Uses Geocoding API https://developers.google.com/maps/documentation/geocoding/intro (Region Biasing)*/
-    public LatLng getLatLng(String zipCode) {
+    public LatLng getLatLngGeocoding(String zipCode) {
         GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, zipCode).awaitIgnoreError();
         return results[0].geometry.location;
+    }
+
+    /* Gets lattitude and logitude from IP address 
+       Uses Geolocation API https://www.javadoc.io/static/com.google.maps/google-maps-services/0.14.0/com/google/maps/GeolocationApi.html */
+    public LatLng getLatLngGeolocation() {
+        GeolocationApiRequest geoLocationRequest = GeolocationApi.newRequest(geoApiContext).CreatePayload();
+        GeolocationResult geolocationResult = geoLocationRequest.awaitIgnoreError();
+        return geolocationResult.location;
+
     }
 
     /* Searches this lattitude and longitude for boba places nearby
