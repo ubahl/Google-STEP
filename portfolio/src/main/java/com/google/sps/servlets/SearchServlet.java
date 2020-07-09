@@ -23,24 +23,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.maps.GeocodingApi;
-import com.google.maps.GeoApiContext;
-import com.google.maps.GeoApiContext.Builder;
-import com.google.maps.GeocodingApi.Response;
-import com.google.maps.model.GeocodingResult;
-import com.google.maps.model.LatLng;
-
 import com.google.maps.NearbySearchRequest;
 import com.google.maps.PlacesApi;
 import com.google.maps.model.PlacesSearchResult;
+import com.google.maps.model.LatLng;
+import com.google.maps.GeoApiContext;
 import com.google.gson.Gson;
 import com.google.maps.model.RankBy;
-
-import com.google.maps.GeolocationApi;
-import com.google.maps.GeolocationApiRequest;
-import com.google.maps.model.GeolocationResult;
-
-import com.google.maps.errors.ApiException;
 
 /* Servlet that accesses Google Places API and Google Geocoding API to search for nearby boba places */
 @WebServlet("/search")
@@ -74,7 +63,7 @@ public class SearchServlet extends HttpServlet {
         response.getWriter().println(json);
     }
 
-    /* Searches the latitude and longitude for boba places nearby
+    /* Searches the latitude and longitude for boba places nearby.
        Place Search API https://developers.google.com/places/web-service/search (Nearby Search) */
     public ArrayList<StoreCard> getCardsInfo(LatLng latLng, String nameToSearch, int radiusToSearch) {
 

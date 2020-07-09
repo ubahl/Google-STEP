@@ -17,7 +17,7 @@ function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(getSearchResults);
     } else {
-        document.getElementById("fail").innerText = "We can't find you!";
+        document.getElementById("fail-message").innerText = "We can't find you!";
     }
 }
 
@@ -34,7 +34,7 @@ async function getSearchResults(position) {
     var url = '/search?searchText=' + searchText + "&lat=" + lat + "&lng=" + lng;
     const response = await fetch(url);
 
-    // // Retrieve response of nearby stores and their details.
+    // Reptrieve response of nearby stores and their details.
     const message = await response.json();
     console.log(message);  
 
@@ -72,4 +72,10 @@ function makeAndShowCards(message) {
         newCard.appendChild(newName);
         allCards.appendChild(newCard);
     }
+}
+
+/* Stores the search text locally. */
+function storeSearchText() {
+    var searchText = document.getElementById('search-text').value;
+    window.localStorage.setItem('searchText', searchText);
 }
