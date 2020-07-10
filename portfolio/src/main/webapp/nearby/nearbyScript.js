@@ -13,11 +13,12 @@
 // limitations under the License.
 
 /* Get the user's location. */
+
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(getSearchResults);
     } else {
-        document.getElementById("fail-message").innerText = "We can't find you!";
+        document.getElementById("loading-text").innerText = "We can't find you!";
     }
 }
 
