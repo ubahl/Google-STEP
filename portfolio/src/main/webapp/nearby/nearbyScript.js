@@ -13,7 +13,6 @@
 // limitations under the License.
 
 /* Get the user's location. */
-
 function setUp() {
     allCards = document.getElementById('all-cards');
 
@@ -23,18 +22,28 @@ function setUp() {
     loadingText = document.createElement('p');
     loadingText.setAttribute('id', 'loading-text');
 
+    var message = "";
+
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(getSearchResults);
-        loadingText.innerText = "Loading results..."
+        navigator.geolocation.getCurrentPosition(getSearchResults, noLocation);
+        message = "Loading results...";
     } else {
-        loadingText.innerText = "We can't find you!";
+        message = "We can't find you!";
     }
+
+    loadingText.innerText = message;
 
     loadingBox.appendChild(loadingText);
     allCards.appendChild(loadingBox);
 }
 
-/* Send a GET request to the server with the search term and location. */
+/* If the user declines geolocation. */
+function noLocation(error) {
+    loadingText = document.getElementById('loading-text');
+    loadingText.innerText = "We can't find you!";
+}
+
+/* If the user allows geolocation, send a GET request to the server with the search term and location. */
 async function getSearchResults(position) {
     // Get the text from local storage.
     var searchText = window.localStorage.getItem('searchText');
