@@ -72,6 +72,10 @@ body {
   width: 200px;
 }
 
+.card-background:hover {
+    background-color: beige;
+}
+
 .card-image {
   height: 180px;
   left: 10px;

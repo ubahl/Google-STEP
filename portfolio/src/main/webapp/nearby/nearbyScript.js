@@ -57,6 +57,8 @@ function makeAndShowCards(message) {
         newCard = document.createElement('div');
         newCard.setAttribute('class', 'card-background');
         newCard.setAttribute('placeId', placeId);
+        newCard.setAttribute('onclick', 'clickCard(this);');
+        newCard.onclick = function() {clickCard(this);};
         
         newIcon = document.createElement('img');
         newIcon.setAttribute('src', photoString);
@@ -78,4 +80,10 @@ function makeAndShowCards(message) {
 function storeSearchText() {
     var searchText = document.getElementById('search-text').value;
     window.localStorage.setItem('searchText', searchText);
+}
+
+function clickCard(card) {
+    var placeId = card.getAttribute('placeId');
+    window.localStorage.setItem('placeId', placeId);
+    window.location.href = "../shop/shop.html";
 }
