@@ -1,3 +1,10 @@
+html {
+    border: 10px solid #DCBEA1;
+    height: -moz-calc(100% - 20px); /* Firefox */
+    height: -webkit-calc(100% - 20px); /* Chrome, Safari */
+    height: calc(100% - 20px);
+}
+
 body {
   background-color: #ffead6;
   width: 100%;
@@ -21,7 +28,6 @@ body {
   margin-left: auto;
   margin-right: auto;
   margin-top: 80px;
-  /* transform: translate(-50%); */
   width: 450px;
 }
 
@@ -56,11 +62,19 @@ body {
 }
 
 /* Loading */
-
+#loading-box {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 25px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 450px;
+}
 
 #loading-text {
-  color: DarkSlateGrey;
+  color: black;
   font-family: Helvetica, Verdana, sans-serif;
+  opacity: 0.8;
   text-align: center;
 }
 
