@@ -61,15 +61,6 @@ async function getSearchResults(position) {
     console.log(message);
 
     makeAndShowCards(message);
-
-    // pageBorder = document.getElementById('html');
-    // currHeight = document.body.scrollHeight;
-    // pageBorder.setAttribute('height', currHeight);
-    // pageBorder.style.border = '10px solid #DCBEA1';
-    // document.style.border = '10px solid #DCBEA1';
-    // pageBorder = document.getElementById('page-border');
-    // pageBorder.setAttribute('height', document.body.scrollHeight);
-
 }
 
 /* Make the store cards and add them to the page. */

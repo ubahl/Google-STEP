@@ -1,20 +1,20 @@
 body {
   background-color: #ffead6;
-  width: 100%;
-  margin-top: 0;
-  margin-right: 0;
-  margin-left: 0;
   margin-bottom: auto;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  width: 100%; 
 }
 
 #page-border {
     border: 10px solid #DCBEA1;
-    min-height: -moz-calc(100vh - 20px); /* Firefox */
-    min-height: -webkit-calc(100vh - 20px); /* Chrome, Safari */
-    min-height: calc(100vh - 20px);
     height: -moz-calc(100% - 20px); /* Firefox */
     height: -webkit-calc(100% - 20px); /* Chrome, Safari */
     height: calc(100% - 20px);
+    min-height: -moz-calc(100vh - 20px); /* Firefox */
+    min-height: -webkit-calc(100vh - 20px); /* Chrome, Safari */
+    min-height: calc(100vh - 20px);
 }
 
 #logo-box {
@@ -76,7 +76,6 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 450px;
-  
 }
 
 #loading-text {
@@ -85,7 +84,6 @@ body {
   opacity: 0.8;
   text-align: center;
 }
-
 
 /* Cards. */
 #all-cards {
