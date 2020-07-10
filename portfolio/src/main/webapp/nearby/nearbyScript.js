@@ -50,6 +50,15 @@ function makeAndShowCards(message) {
     for (var i = 0; i < message.length; i++) {
         // Gets information from the message from the server.
         var name = message[i]['name'];
+
+        // Shortens name to 3 words if too long.
+        if (name.length > 10) {
+            var words = name.split(' ');
+            if (words.length > 2) {
+                name = words[0] + ' ' + words[1] + ' ' + words[2];
+            }   
+        }
+
         var placeId = message[i]['placeId'];
         var photoString = message[i]['photoString'];
 
