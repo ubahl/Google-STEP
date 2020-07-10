@@ -14,12 +14,24 @@
 
 /* Get the user's location. */
 
-function getLocation() {
+function setUp() {
+    allCards = document.getElementById('all-cards');
+
+    loadingBox = document.createElement('div');
+    loadingBox.setAttribute('id', 'loading-box');
+
+    loadingText = document.createElement('p');
+    loadingText.setAttribute('id', 'loading-text');
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(getSearchResults);
+        loadingText.innerText = "Loading results..."
     } else {
-        document.getElementById("loading-text").innerText = "We can't find you!";
+        loadingText.innerText = "We can't find you!";
     }
+
+    loadingBox.appendChild(loadingText);
+    allCards.appendChild(loadingBox);
 }
 
 /* Send a GET request to the server with the search term and location. */
@@ -40,6 +52,15 @@ async function getSearchResults(position) {
     console.log(message);
 
     makeAndShowCards(message);
+
+    // pageBorder = document.getElementById('html');
+    // currHeight = document.body.scrollHeight;
+    // pageBorder.setAttribute('height', currHeight);
+    // pageBorder.style.border = '10px solid #DCBEA1';
+    // document.style.border = '10px solid #DCBEA1';
+    // pageBorder = document.getElementById('page-border');
+    // pageBorder.setAttribute('height', document.body.scrollHeight);
+
 }
 
 /* Make the store cards and add them to the page. */
