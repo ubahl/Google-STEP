@@ -4,17 +4,17 @@ body {
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;
-  width: 100%; 
+  width: 100%;
 }
 
 #page-border {
-    border: 10px solid #DCBEA1;
-    height: -moz-calc(100% - 20px); /* Firefox */
-    height: -webkit-calc(100% - 20px); /* Chrome, Safari */
-    height: calc(100% - 20px);
-    min-height: -moz-calc(100vh - 20px); /* Firefox */
-    min-height: -webkit-calc(100vh - 20px); /* Chrome, Safari */
-    min-height: calc(100vh - 20px);
+  border: 10px solid #dcbea1;
+  height: -moz-calc(100% - 20px); /* Firefox */
+  height: -webkit-calc(100% - 20px); /* Chrome, Safari */
+  height: calc(100% - 20px);
+  min-height: -moz-calc(100vh - 20px); /* Firefox */
+  min-height: -webkit-calc(100vh - 20px); /* Chrome, Safari */
+  min-height: calc(100vh - 20px);
 }
 
 #logo-box {
