@@ -8,20 +8,22 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   </head>
   <body>
-      <script> getLocation(); </script>
+      <div id="page-border">
 
-      <img src="/images/bobabudlogo.png" alt="Boba Bud Logo" id="logo-box">
+        <img src="/images/bobabudlogo.png" alt="Boba Bud Logo" id="logo-box">
 
-      <!-- Search bar and button. -->
-      <div id="search-div">
-        <input id="search-text" type="text" name="text" placeholder="enter a drink name"/>
-        <a id="search-button" href="nearby.html" onclick="storeSearchText()">
+        <!-- Search bar and button. -->
+        <div id="search-div">
+          <input id="search-text" type="text" name="text" placeholder="enter a drink name"/>
+          <a id="search-button" href="nearby.html" onclick="storeSearchText()">
             <i class="fa fa-search"></i>
-        </a>
-      </div>
+          </a>
+        </div>
 
-      <div id="all-cards">
+        <div id="all-cards">
           <!-- Cards are generated here from script. -->
-          <p id="fail-message"></p>
-      </div>
+        </div>
+
+        <script> setUp(); </script>
+      </div> 
   </body>

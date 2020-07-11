@@ -13,15 +13,37 @@
 // limitations under the License.
 
 /* Get the user's location. */
-function getLocation() {
+function setUp() {
+    allCards = document.getElementById('all-cards');
+
+    loadingBox = document.createElement('div');
+    loadingBox.setAttribute('id', 'loading-box');
+
+    loadingText = document.createElement('p');
+    loadingText.setAttribute('id', 'loading-text');
+
+    var message = "";
+
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(getSearchResults);
+        navigator.geolocation.getCurrentPosition(getSearchResults, noLocation);
+        message = "Loading results...";
     } else {
-        document.getElementById("fail-message").innerText = "We can't find you!";
+        message = "We can't find you!";
     }
+
+    loadingText.innerText = message;
+
+    loadingBox.appendChild(loadingText);
+    allCards.appendChild(loadingBox);
 }
 
-/* Send a GET request to the server with the search term and location. */
+/* If the user declines geolocation. */
+function noLocation(error) {
+    loadingText = document.getElementById('loading-text');
+    loadingText.innerText = "We can't find you!";
+}
+
+/* If the user allows geolocation, send a GET request to the server with the search term and location. */
 async function getSearchResults(position) {
     // Get the text from local storage.
     var searchText = window.localStorage.getItem('searchText');
@@ -50,6 +72,15 @@ function makeAndShowCards(message) {
     for (var i = 0; i < message.length; i++) {
         // Gets information from the message from the server.
         var name = message[i]['name'];
+
+        // Shortens name to 3 words if too long.
+        if (name.length > 10) {
+            var words = name.split(' ');
+            if (words.length > 2) {
+                name = words[0] + ' ' + words[1] + ' ' + words[2];
+            }   
+        }
+
         var placeId = message[i]['placeId'];
         var photoString = message[i]['photoString'];
 
@@ -57,6 +88,8 @@ function makeAndShowCards(message) {
         newCard = document.createElement('div');
         newCard.setAttribute('class', 'card-background');
         newCard.setAttribute('placeId', placeId);
+        newCard.setAttribute('onclick', 'clickCard(this);');
+        newCard.onclick = function() {clickCard(this);};
         
         newIcon = document.createElement('img');
         newIcon.setAttribute('src', photoString);
@@ -78,4 +111,10 @@ function makeAndShowCards(message) {
 function storeSearchText() {
     var searchText = document.getElementById('search-text').value;
     window.localStorage.setItem('searchText', searchText);
+}
+
+function clickCard(card) {
+    var placeId = card.getAttribute('placeId');
+    window.localStorage.setItem('placeId', placeId);
+    window.location.href = "../shop/shop.html";
 }

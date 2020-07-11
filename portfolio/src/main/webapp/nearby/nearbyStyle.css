@@ -1,11 +1,26 @@
 body {
   background-color: #ffead6;
+  margin-bottom: auto;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  width: 100%;
+}
+
+#page-border {
+  border: 10px solid #dcbea1;
+  height: -moz-calc(100% - 20px); /* Firefox */
+  height: -webkit-calc(100% - 20px); /* Chrome, Safari */
+  height: calc(100% - 20px);
+  min-height: -moz-calc(100vh - 20px); /* Firefox */
+  min-height: -webkit-calc(100vh - 20px); /* Chrome, Safari */
+  min-height: calc(100vh - 20px);
 }
 
 #logo-box {
   height: 68.5px;
   margin-left: 50%;
-  margin-right: 50%;
+  margin-right: auto;
   transform: translate(-50%);
   width: 245px;
 }
@@ -17,10 +32,9 @@ body {
   border-radius: 50px;
   height: 30px;
   margin-bottom: 50px;
-  margin-left: 50%;
-  margin-right: 50%;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 80px;
-  transform: translate(-50%);
   width: 450px;
 }
 
@@ -54,6 +68,23 @@ body {
   width: 380px;
 }
 
+/* Loading */
+#loading-box {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 25px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 450px;
+}
+
+#loading-text {
+  color: black;
+  font-family: Helvetica, Verdana, sans-serif;
+  opacity: 0.8;
+  text-align: center;
+}
+
 /* Cards. */
 #all-cards {
   margin-left: auto;
@@ -70,6 +101,10 @@ body {
   margin: 10px;
   position: relative;
   width: 200px;
+}
+
+.card-background:hover {
+  background-color: beige;
 }
 
 .card-image {
