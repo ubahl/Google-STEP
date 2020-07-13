@@ -17,6 +17,7 @@ import com.google.maps.GeoApiContext;
 import com.google.maps.PhotoRequest;
 import com.google.maps.ImageResult;
 import com.google.maps.model.OpeningHours;
+import com.google.maps.model.LatLng;
 
 public class StoreCard {
     String placeId ="";
@@ -24,11 +25,13 @@ public class StoreCard {
     float rating = 0.0f;
     String photoString;
     Boolean openNow;
+    LatLng latLng;
 
     public StoreCard(PlacesSearchResult store, GeoApiContext geoApiContext) {
         placeId = store.placeId;
         name = store.name;
         rating = store.rating;
+        latLng = store.geometry.location;
 
         // Get photo from Place API
         Photo[] photos = store.photos;
@@ -52,6 +55,5 @@ public class StoreCard {
         } else {
             openNow = openingHours.openNow;
         }
-
     }
 }

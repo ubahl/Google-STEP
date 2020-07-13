@@ -26,21 +26,27 @@ function onLoad() {
     console.log("openNow: " + openNow);
 
     loadElements(name, rating, openNow);
+
+    let script = document.createElement('script');
+    script.src = "https://maps.googleapis.com/maps/api/js?key=" + key + "&callback=addMap";
+    document.body.append(script);
 }
 
 function loadElements(name, rating, openNow) {
     var background = document.getElementById('white-background');
     // Clear previous elements.
-    // background.innerHTML = "";
+    background.innerHTML = "";
 
+    // Create store heading.
     var storeText = document.createElement('h');
     storeText.setAttribute('id', 'store-text');
     storeText.innerText = name;
     background.appendChild(storeText);
     background.appendChild(document.createElement('br'));
 
+    // Display rating.
     var percentage = (rating / 5.0) * 100 + '%';
-    console.log('per: ' + percentage);
+    console.log('percentage: ' + percentage);
 
     var ratingInner = document.createElement('div');
     ratingInner.setAttribute('id', 'stars-inner');
@@ -52,6 +58,7 @@ function loadElements(name, rating, openNow) {
 
     background.appendChild(ratingOuter);
 
+    // If store is open now, display it.
     if (openNow === "true") {
         var openNowText = document.createElement('p');
         openNowText.setAttribute('id', 'open-text');
@@ -59,13 +66,21 @@ function loadElements(name, rating, openNow) {
         background.appendChild(openNowText);
     }
 
-    let script = document.createElement('script');
-    script.src = "https://maps.googleapis.com/maps/api/js?key=" + key + "&callback=addMap";
-    document.body.append(script);
+    // Add the dynamic map.
+    var map = document.createElement('div');
+    map.setAttribute('id', 'map');
+    background.appendChild(map);
 }
 
+/* Load location of the given store and create a dynamic map. */
 function addMap() {
-    var loc = {lat: 37.411, lng: -122.118};
-    var map = new google.maps.Map(document.getElementById('map'), {zoom: 4, center: loc});
+    var storeLat = parseFloat(window.localStorage.getItem('lat'));
+    var storeLng = parseFloat(window.localStorage.getItem('lng'));
+    // var loc = window.localStorage.getItem('latLng');
+    var loc = {lat: storeLat, lng: storeLng};
+    console.log("latLng: " + loc);
+
+    // var loc = {lat: 37.411, lng: -122.118};
+    var map = new google.maps.Map(document.getElementById('map'), {zoom: 15, center: loc});
     var marker = new google.maps.Marker({position: loc, map: map});
 }
