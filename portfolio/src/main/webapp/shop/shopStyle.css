@@ -44,6 +44,7 @@ body {
 }
 
 #stars-outer::before {
+  /* Adds 5 empty stars. */
   content: "\f006 \f006 \f006 \f006 \f006";
 }
 
@@ -58,6 +59,7 @@ body {
 
 #stars-inner::before {
   color: black;
+  /* Adds 5 filled in stars. */
   content: "\f005 \f005 \f005 \f005 \f005";
 }
 

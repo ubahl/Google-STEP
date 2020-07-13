@@ -68,7 +68,7 @@ async function getSearchResults(position) {
 function makeAndShowCards(message) {
     var allCards = document.getElementById('all-cards');
 
-    // Clear previous cards
+    // Clear previous cards.
     allCards.innerHTML = "";
 
     for (var i = 0; i < message.length; i++) {

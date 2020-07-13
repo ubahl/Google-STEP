@@ -26,7 +26,7 @@ public class StoreCard {
     String name = "";
     float rating = 0.0f;
     String photoString;
-    Boolean openNow;
+    boolean openNow = false;
     LatLng latLng;
 
     public StoreCard(PlacesSearchResult store, GeoApiContext geoApiContext) {
@@ -50,12 +50,10 @@ public class StoreCard {
             photoString = "data:image/png;base64," + encodedPhoto;
         }
 
-        // Open Now?
+        // If the store has their hours available, check if they are open.
         OpeningHours openingHours = store.openingHours;
-        if (openingHours == null) {
-            openNow = false;
-        } else {
+        if (openingHours != null) {
             openNow = openingHours.openNow;
-        }
+        } 
     }
 }
