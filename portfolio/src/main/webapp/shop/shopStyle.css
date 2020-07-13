@@ -33,14 +33,14 @@ body {
 }
 
 #open-text {
-  font-weight: bold;
   color: green;
+  font-weight: bold;
 }
 
 #stars-outer {
   display: inline-block;
+  font-family: FontAwesome, sans-serif;
   position: relative;
-  font-family: FontAwesome;
 }
 
 #stars-outer::before {
@@ -48,20 +48,20 @@ body {
 }
 
 #stars-inner {
+  left: 0;
+  overflow: hidden;
   position: absolute;
   top: 0;
-  left: 0;
   white-space: nonwrap;
-  overflow: hidden;
   width: 0;
 }
 
 #stars-inner::before {
-    content: "\f005 \f005 \f005 \f005 \f005";
     color: black;
+    content: "\f005 \f005 \f005 \f005 \f005";
 }
 
 #map {
-  width: 100%;
   height: 400px;
+  width: 100%;
 }

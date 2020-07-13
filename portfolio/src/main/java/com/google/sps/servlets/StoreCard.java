@@ -4,6 +4,8 @@ Holds the information that goes onto the search results cards:
 - Store Name
 - Image
 - Rating
+- Open Now
+- LatLng
 */
 
 package com.google.sps.servlets;

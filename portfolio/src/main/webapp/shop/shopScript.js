@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/* On load of the page, get the stored store values. */
 function onLoad() {
     var placeId = window.localStorage.getItem('placeId');
     console.log("placeId: " + placeId);
@@ -27,6 +28,7 @@ function onLoad() {
 
     loadElements(name, rating, openNow);
 
+    // Call Maps Javascript API.
     let script = document.createElement('script');
     script.src = "https://maps.googleapis.com/maps/api/js?key=" + key + "&callback=addMap";
     document.body.append(script);
@@ -76,11 +78,9 @@ function loadElements(name, rating, openNow) {
 function addMap() {
     var storeLat = parseFloat(window.localStorage.getItem('lat'));
     var storeLng = parseFloat(window.localStorage.getItem('lng'));
-    // var loc = window.localStorage.getItem('latLng');
     var loc = {lat: storeLat, lng: storeLng};
-    console.log("latLng: " + loc);
 
-    // var loc = {lat: 37.411, lng: -122.118};
-    var map = new google.maps.Map(document.getElementById('map'), {zoom: 15, center: loc});
+    const zoomAmount = 15;
+    var map = new google.maps.Map(document.getElementById('map'), {zoom: zoomAmount, center: loc});
     var marker = new google.maps.Marker({position: loc, map: map});
 }

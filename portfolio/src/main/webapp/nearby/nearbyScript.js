@@ -16,6 +16,7 @@
 function setUp() {
     allCards = document.getElementById('all-cards');
 
+    // Adds a loading box.
     loadingBox = document.createElement('div');
     loadingBox.setAttribute('id', 'loading-box');
 
@@ -66,6 +67,7 @@ async function getSearchResults(position) {
 /* Make the store cards and add them to the page. */
 function makeAndShowCards(message) {
     var allCards = document.getElementById('all-cards');
+
     // Clear previous cards
     allCards.innerHTML = "";
 
@@ -76,7 +78,6 @@ function makeAndShowCards(message) {
         var photoString = message[i]['photoString'];
         var rating = message[i]['rating'];
         var openNow = message[i]['openNow'];
-        // var latLng = message[i]['latLng'];
         var lat = message[i]['latLng']['lat'];
         var lng = message[i]['latLng']['lng'];
 
@@ -90,24 +91,27 @@ function makeAndShowCards(message) {
         }
 
         // Creates a new card, as well as a new image and name element for the card. 
-        // Sets a placeid, openNow,vrating, name, and latLng attribute in the card.
+
+        // Creates card background.
         newCard = document.createElement('div');
+        newCard.setAttribute('class', 'card-background');
+        newCard.setAttribute('onclick', 'clickCard(this);');
+        newCard.onclick = function() {clickCard(this);};
+        // Sets placeid, openNow, rating, name, and latLng attributes in the card.
         newCard.setAttribute('placeId', placeId);
         newCard.setAttribute('openNow', openNow);
         newCard.setAttribute('rating', rating);
         newCard.setAttribute('name', name);
-        // newCard.setAttribute('latLng', latLng);
         newCard.setAttribute('lat', lat);
         newCard.setAttribute('lng', lng);
-        newCard.setAttribute('class', 'card-background');
-        newCard.setAttribute('onclick', 'clickCard(this);');
-        newCard.onclick = function() {clickCard(this);};
         
+        // Creates image in card.
         newIcon = document.createElement('img');
         newIcon.setAttribute('src', photoString);
         newIcon.setAttribute('class', 'card-image');
         newIcon.setAttribute('alt', name);
 
+        // Adds store name to card.
         newName = document.createElement('p');
         newName.setAttribute('class', 'card-name');
         newName.innerText = clippedName;
@@ -125,8 +129,9 @@ function storeSearchText() {
     window.localStorage.setItem('searchText', searchText);
 }
 
+/* On click, store placeId, rating, openNow, lat, and lng. */
 function clickCard(card) {
-    // On click, store placeId, rating, openNow, and latLng.
+    
     var placeId = card.getAttribute('placeId');
     window.localStorage.setItem('placeId', placeId);
 
@@ -139,11 +144,9 @@ function clickCard(card) {
     var openNow = card.getAttribute('openNow');
     window.localStorage.setItem('openNow', openNow);
 
-    // var latLng = card.getAttribute('latLng');
-    // window.localStorage.setItem('latLng', latLng);
-
     var lat = card.getAttribute('lat');
     window.localStorage.setItem('lat', lat);
+
     var lng = card.getAttribute('lng');
     window.localStorage.setItem('lng', lng);
 
