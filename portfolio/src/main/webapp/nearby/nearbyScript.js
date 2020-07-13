@@ -73,11 +73,13 @@ function makeAndShowCards(message) {
         // Gets information from the message from the server.
         var name = message[i]['name'];
 
+        var clippedName = name;
+
         // Shortens name to 3 words if too long.
         if (name.length > 10) {
             var words = name.split(' ');
             if (words.length > 2) {
-                name = words[0] + ' ' + words[1] + ' ' + words[2];
+                clippedName = words[0] + ' ' + words[1] + ' ' + words[2];
             }   
         }
 
@@ -103,7 +105,7 @@ function makeAndShowCards(message) {
 
         newName = document.createElement('p');
         newName.setAttribute('class', 'card-name');
-        newName.innerText = name;
+        newName.innerText = clippedName;
 
         // Adds the new card and its elements to the page.
         newCard.appendChild(newIcon);

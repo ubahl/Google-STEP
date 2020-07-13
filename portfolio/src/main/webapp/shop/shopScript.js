@@ -31,7 +31,7 @@ function onLoad() {
 function loadElements(name, rating, openNow) {
     var background = document.getElementById('white-background');
     // Clear previous elements.
-    background.innerHTML = "";
+    // background.innerHTML = "";
 
     var storeText = document.createElement('h');
     storeText.setAttribute('id', 'store-text');
@@ -58,4 +58,14 @@ function loadElements(name, rating, openNow) {
         openNowText.innerHTML = "open now";
         background.appendChild(openNowText);
     }
+
+    let script = document.createElement('script');
+    script.src = "https://maps.googleapis.com/maps/api/js?key=" + key + "&callback=addMap";
+    document.body.append(script);
+}
+
+function addMap() {
+    var loc = {lat: 37.411, lng: -122.118};
+    var map = new google.maps.Map(document.getElementById('map'), {zoom: 4, center: loc});
+    var marker = new google.maps.Marker({position: loc, map: map});
 }
