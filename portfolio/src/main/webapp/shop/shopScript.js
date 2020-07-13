@@ -15,4 +15,13 @@
 function onLoad() {
     var placeId = window.localStorage.getItem('placeId');
     console.log("placeId: " + placeId);
+
+    var name = window.localStorage.getItem('name');
+    console.log("name: " + name);
+
+    var rating = window.localStorage.getItem('rating');
+    console.log("rating: " + rating);
+
+    var openNow = window.localStorage.getItem('openNow');
+    console.log("openNow: " + openNow);
 }

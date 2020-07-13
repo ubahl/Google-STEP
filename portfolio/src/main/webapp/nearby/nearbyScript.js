@@ -83,11 +83,16 @@ function makeAndShowCards(message) {
 
         var placeId = message[i]['placeId'];
         var photoString = message[i]['photoString'];
+        var rating = message[i]['rating'];
+        var openNow = message[i]['openNow'];
 
         // Creates a new card, as well as a new image and name element for the card. Sets a placeid attribute in the card.
         newCard = document.createElement('div');
-        newCard.setAttribute('class', 'card-background');
         newCard.setAttribute('placeId', placeId);
+        newCard.setAttribute('openNow', openNow);
+        newCard.setAttribute('rating', rating);
+        newCard.setAttribute('name', name);
+        newCard.setAttribute('class', 'card-background');
         newCard.setAttribute('onclick', 'clickCard(this);');
         newCard.onclick = function() {clickCard(this);};
         
@@ -114,7 +119,18 @@ function storeSearchText() {
 }
 
 function clickCard(card) {
+    // On click, store placeId, rating, and openNow.
     var placeId = card.getAttribute('placeId');
     window.localStorage.setItem('placeId', placeId);
+
+    var rating = card.getAttribute('rating');
+    window.localStorage.setItem('rating', rating);
+
+    var name = card.getAttribute('name');
+    window.localStorage.setItem('name', name);
+
+    var openNow = card.getAttribute('openNow');
+    window.localStorage.setItem('openNow', openNow);
+
     window.location.href = "../shop/shop.html";
 }

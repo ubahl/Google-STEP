@@ -16,12 +16,14 @@ import com.google.maps.PlacesApi;
 import com.google.maps.GeoApiContext;
 import com.google.maps.PhotoRequest;
 import com.google.maps.ImageResult;
+import com.google.maps.model.OpeningHours;
 
 public class StoreCard {
     String placeId ="";
     String name = "";
     float rating = 0.0f;
     String photoString;
+    Boolean openNow;
 
     public StoreCard(PlacesSearchResult store, GeoApiContext geoApiContext) {
         placeId = store.placeId;
@@ -42,5 +44,14 @@ public class StoreCard {
             String encodedPhoto = new String(Base64.getEncoder().encode(photoBytes));
             photoString = "data:image/png;base64," + encodedPhoto;
         }
+
+        // Open Now?
+        OpeningHours openingHours = store.openingHours;
+        if (openingHours == null) {
+            openNow = false;
+        } else {
+            openNow = openingHours.openNow;
+        }
+
     }
 }
