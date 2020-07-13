@@ -1,3 +1,69 @@
 body {
   background-color: #ffead6;
+  margin-bottom: auto;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  width: 100%;
+}
+
+#page-border {
+  border: 10px solid #dcbea1;
+  height: -moz-calc(100% - 20px); /* Firefox */
+  height: -webkit-calc(100% - 20px); /* Chrome, Safari */
+  height: calc(100% - 20px);
+  min-height: -moz-calc(100vh - 20px); /* Firefox */
+  min-height: -webkit-calc(100vh - 20px); /* Chrome, Safari */
+  min-height: calc(100vh - 20px);
+}
+
+#white-background {
+  background-color: snow;
+  border-radius: 25px;
+  font-family: Helvetica, Verdana, sans-serif;
+  height: auto;
+  margin: 50px auto;
+  width: 60%;
+  padding: 2%;
+}
+
+#store-text {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+#open-text {
+  color: green;
+  font-weight: bold;
+}
+
+#stars-outer {
+  display: inline-block;
+  font-family: FontAwesome, sans-serif;
+  position: relative;
+}
+
+#stars-outer::before {
+  /* Adds 5 empty stars. */
+  content: "\f006 \f006 \f006 \f006 \f006";
+}
+
+#stars-inner {
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  white-space: nonwrap;
+  width: 0;
+}
+
+#stars-inner::before {
+  /* Adds 5 filled in stars. */
+  color: black;
+  content: "\f005 \f005 \f005 \f005 \f005";
+}
+
+#map {
+  height: 400px;
+  width: 100%;
 }

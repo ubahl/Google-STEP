@@ -16,6 +16,7 @@
 function setUp() {
     allCards = document.getElementById('all-cards');
 
+    // Adds a loading box.
     loadingBox = document.createElement('div');
     loadingBox.setAttribute('id', 'loading-box');
 
@@ -66,39 +67,54 @@ async function getSearchResults(position) {
 /* Make the store cards and add them to the page. */
 function makeAndShowCards(message) {
     var allCards = document.getElementById('all-cards');
-    // Clear previous cards
+
+    // Clear previous cards.
     allCards.innerHTML = "";
 
     for (var i = 0; i < message.length; i++) {
         // Gets information from the message from the server.
         var name = message[i]['name'];
+        var placeId = message[i]['placeId'];
+        var photoString = message[i]['photoString'];
+        var rating = message[i]['rating'];
+        var openNow = message[i]['openNow'];
+        var lat = message[i]['latLng']['lat'];
+        var lng = message[i]['latLng']['lng'];
 
         // Shortens name to 3 words if too long.
+        var clippedName = name;
         if (name.length > 10) {
             var words = name.split(' ');
             if (words.length > 2) {
-                name = words[0] + ' ' + words[1] + ' ' + words[2];
+                clippedName = words[0] + ' ' + words[1] + ' ' + words[2];
             }   
         }
 
-        var placeId = message[i]['placeId'];
-        var photoString = message[i]['photoString'];
+        // Creates a new card, as well as a new image and name element for the card. 
 
-        // Creates a new card, as well as a new image and name element for the card. Sets a placeid attribute in the card.
+        // Creates card background.
         newCard = document.createElement('div');
         newCard.setAttribute('class', 'card-background');
-        newCard.setAttribute('placeId', placeId);
         newCard.setAttribute('onclick', 'clickCard(this);');
         newCard.onclick = function() {clickCard(this);};
+        // Sets placeid, openNow, rating, name, and latLng attributes in the card.
+        newCard.setAttribute('placeId', placeId);
+        newCard.setAttribute('openNow', openNow);
+        newCard.setAttribute('rating', rating);
+        newCard.setAttribute('name', name);
+        newCard.setAttribute('lat', lat);
+        newCard.setAttribute('lng', lng);
         
+        // Creates image in card.
         newIcon = document.createElement('img');
         newIcon.setAttribute('src', photoString);
         newIcon.setAttribute('class', 'card-image');
         newIcon.setAttribute('alt', name);
 
+        // Adds store name to card.
         newName = document.createElement('p');
         newName.setAttribute('class', 'card-name');
-        newName.innerText = name;
+        newName.innerText = clippedName;
 
         // Adds the new card and its elements to the page.
         newCard.appendChild(newIcon);
@@ -113,8 +129,26 @@ function storeSearchText() {
     window.localStorage.setItem('searchText', searchText);
 }
 
+/* On click, store placeId, rating, openNow, lat, and lng. */
 function clickCard(card) {
+    
     var placeId = card.getAttribute('placeId');
     window.localStorage.setItem('placeId', placeId);
+
+    var rating = card.getAttribute('rating');
+    window.localStorage.setItem('rating', rating);
+
+    var name = card.getAttribute('name');
+    window.localStorage.setItem('name', name);
+
+    var openNow = card.getAttribute('openNow');
+    window.localStorage.setItem('openNow', openNow);
+
+    var lat = card.getAttribute('lat');
+    window.localStorage.setItem('lat', lat);
+
+    var lng = card.getAttribute('lng');
+    window.localStorage.setItem('lng', lng);
+
     window.location.href = "../shop/shop.html";
 }

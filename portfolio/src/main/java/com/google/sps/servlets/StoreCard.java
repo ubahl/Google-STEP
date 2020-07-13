@@ -4,6 +4,8 @@ Holds the information that goes onto the search results cards:
 - Store Name
 - Image
 - Rating
+- Open Now
+- LatLng
 */
 
 package com.google.sps.servlets;
@@ -16,17 +18,22 @@ import com.google.maps.PlacesApi;
 import com.google.maps.GeoApiContext;
 import com.google.maps.PhotoRequest;
 import com.google.maps.ImageResult;
+import com.google.maps.model.OpeningHours;
+import com.google.maps.model.LatLng;
 
 public class StoreCard {
     String placeId ="";
     String name = "";
     float rating = 0.0f;
     String photoString;
+    boolean openNow = false;
+    LatLng latLng;
 
     public StoreCard(PlacesSearchResult store, GeoApiContext geoApiContext) {
         placeId = store.placeId;
         name = store.name;
         rating = store.rating;
+        latLng = store.geometry.location;
 
         // Get photo from Place API
         Photo[] photos = store.photos;
@@ -42,5 +49,11 @@ public class StoreCard {
             String encodedPhoto = new String(Base64.getEncoder().encode(photoBytes));
             photoString = "data:image/png;base64," + encodedPhoto;
         }
+
+        // If the store has their hours available, check if they are open.
+        OpeningHours openingHours = store.openingHours;
+        if (openingHours != null) {
+            openNow = openingHours.openNow;
+        } 
     }
 }
