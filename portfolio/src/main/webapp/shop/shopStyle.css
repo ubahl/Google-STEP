@@ -58,8 +58,8 @@ body {
 }
 
 #stars-inner::before {
-  color: black;
   /* Adds 5 filled in stars. */
+  color: black;
   content: "\f005 \f005 \f005 \f005 \f005";
 }
 
