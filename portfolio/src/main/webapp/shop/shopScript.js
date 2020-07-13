@@ -24,4 +24,38 @@ function onLoad() {
 
     var openNow = window.localStorage.getItem('openNow');
     console.log("openNow: " + openNow);
+
+    loadElements(name, rating, openNow);
+}
+
+function loadElements(name, rating, openNow) {
+    var background = document.getElementById('white-background');
+    // Clear previous elements.
+    background.innerHTML = "";
+
+    var storeText = document.createElement('h');
+    storeText.setAttribute('id', 'store-text');
+    storeText.innerText = name;
+    background.appendChild(storeText);
+    background.appendChild(document.createElement('br'));
+
+    var percentage = (rating / 5.0) * 100 + '%';
+    console.log('per: ' + percentage);
+
+    var ratingInner = document.createElement('div');
+    ratingInner.setAttribute('id', 'stars-inner');
+    ratingInner.style.width = percentage;
+
+    var ratingOuter = document.createElement('div');
+    ratingOuter.setAttribute('id', 'stars-outer');
+    ratingOuter.appendChild(ratingInner);
+
+    background.appendChild(ratingOuter);
+
+    if (openNow === "true") {
+        var openNowText = document.createElement('p');
+        openNowText.setAttribute('id', 'open-text');
+        openNowText.innerHTML = "open now";
+        background.appendChild(openNowText);
+    }
 }
