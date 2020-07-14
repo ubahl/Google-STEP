@@ -48,19 +48,23 @@ function noLocation(error) {
 async function getSearchResults(position) {
     // Get the text from local storage.
     var searchText = window.localStorage.getItem('searchText');
-    // Prepare search text to be GET string query.
+    // Prepare search text to be GET string query. Add 'boba' to the end of the query.
+    // Add a space inbetween if there is text entered.
     searchText = searchText.replace(/ /g, '%20');
-    searchText += "%20boba";
-    console.log("Search Text: " + searchText);
+    if (searchText.length != 0) {
+        searchText += '%20';
+    }
+    searchText += 'boba';
+    console.log('Search Text: ' + searchText);
 
     // Use a GET request to send text and location to /search.
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
-    console.log("Lat: " + lat + "Lng: " + lng);
+    console.log('Lat: ' + lat + 'Lng: ' + lng);
     var url = '/search?searchText=' + searchText + "&lat=" + lat + "&lng=" + lng;
     const response = await fetch(url);
-
-    // Reptrieve response of nearby stores and their details.
+    
+    // Retrieve response of nearby stores and their details.
     const message = await response.json();
     console.log(message);
 
@@ -83,6 +87,7 @@ function makeAndShowCards(message) {
         var openNow = message[i]['openNow'];
         var lat = message[i]['latLng']['lat'];
         var lng = message[i]['latLng']['lng'];
+        var vicinity = message[i]['vicinity'];
 
         // Shortens name to 3 words if too long.
         var clippedName = name;
@@ -91,6 +96,13 @@ function makeAndShowCards(message) {
             if (words.length > 2) {
                 clippedName = words[0] + ' ' + words[1] + ' ' + words[2];
             }   
+        }
+
+        // Extracts city from vicinity
+        var vicinitySplit = vicinity.split(/,\s*/);
+        if(vicinitySplit.length > 0) {
+            vicinity = vicinitySplit[1];
+            console.log('city: ' + vicinity);
         }
 
         // Creates a new card, as well as a new image and name element for the card. 
@@ -119,9 +131,15 @@ function makeAndShowCards(message) {
         newName.setAttribute('class', 'card-name');
         newName.innerText = clippedName;
 
+        // Adds city name to card.
+        newCity = document.createElement('p');
+        newCity.setAttribute('class', 'card-loc');
+        newCity.innerText = vicinity;
+
         // Adds the new card and its elements to the page.
         newCard.appendChild(newIcon);
         newCard.appendChild(newName);
+        newCard.appendChild(newCity);
         allCards.appendChild(newCard);
     }
 }
