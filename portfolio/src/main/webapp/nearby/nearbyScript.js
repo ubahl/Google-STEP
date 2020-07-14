@@ -48,6 +48,9 @@ function noLocation(error) {
 async function getSearchResults(position) {
     // Get the text from local storage.
     var searchText = window.localStorage.getItem('searchText');
+    // Prepare search text to be GET string query.
+    searchText = searchText.replace(/ /g, '%20');
+    searchText += "%20boba";
     console.log("Search Text: " + searchText);
 
     // Use a GET request to send text and location to /search.
