@@ -54,12 +54,8 @@ public class StoreCard {
 
         // If the store has their hours available, check if they are open.
         OpeningHours openingHours = store.openingHours;
-        try {
+        if (openingHours != null) {	
             openNow = openingHours.openNow;
-        } catch (Exception e) {
-            // Otherwise, 
-            e.printStackTrace();
         }
-
     }
 }
