@@ -28,12 +28,14 @@ public class StoreCard {
     String photoString;
     boolean openNow = false;
     LatLng latLng;
+    String vicinity;
 
     public StoreCard(PlacesSearchResult store, GeoApiContext geoApiContext) {
         placeId = store.placeId;
         name = store.name;
         rating = store.rating;
         latLng = store.geometry.location;
+        vicinity = store.vicinity;
 
         // Get photo from Place API
         Photo[] photos = store.photos;
@@ -52,8 +54,8 @@ public class StoreCard {
 
         // If the store has their hours available, check if they are open.
         OpeningHours openingHours = store.openingHours;
-        if (openingHours != null) {
+        if (openingHours != null) {	
             openNow = openingHours.openNow;
-        } 
+        }
     }
 }

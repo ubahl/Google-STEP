@@ -36,7 +36,7 @@ import com.google.maps.model.RankBy;
 public class SearchServlet extends HttpServlet {
     Key myKey;
     GeoApiContext geoApiContext;
-    final int SEARCH_RADIUS = 25000; // Radius to search for boba shops
+    final int SEARCH_RADIUS = 15000; // Radius to search for boba shops (meters).
 
     @Override
     public void init() {
