@@ -1,7 +1,7 @@
 html {
     border: 10px solid #DCBEA1;
-    height: -moz-calc(100% - 20px); /* Firefox */
-    height: -webkit-calc(100% - 20px); /* Chrome, Safari */
+    height: -moz-calc(100% - 20px);
+    height: -webkit-calc(100% - 20px);
     height: calc(100% - 20px);
 }
 
@@ -76,56 +76,25 @@ body {
     width: 380px;
 }
 
-/* Reviews. */
-#reviews-button {
+#reviews-div {
     bottom: 20px;
     left: 50%;
     position: absolute;
     transform: translate(-50%);
+    border-radius: 50%;
 }
 
-#white-background {
-    background-color: snow;
-    border-radius: 25px;
-    font-family: Helvetica, Verdana, sans-serif;
-    height: auto;
-    margin: 50px auto;
-    width: 60%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-}
-
-#review-box {
-    border: 2px DarkGrey solid;
-    display: inline-block;
-    margin: 10px;
-    padding: 5px;
-    padding-bottom: 15px;
-    padding-top: 15px;
-    width: 80%;
-}
-
-#reviewer-info {
+#reviews-button {
+    border-radius: 15px;
+    background: none;
+    outline: none;
+    border: none;
+    height: 25px;
+    width: 55px;
     color: black;
-    font-family: Helvetica, Verdana, sans-serif;
-    text-align: left;
+    font-size: 14px;
 }
 
-#review-text {
-    color: DarkSlateGrey;
-    font-family: Helvetica, Verdana, sans-serif;
-    text-align: left;
-}
-
-#write-a-review {
-    border: 2px DarkGrey solid;
-    display: inline-block;
-    margin: 10px;
-    padding: 5px;
-    text-align: left;
-    width: 80%;
-}
-
-#submit-review {
-    left: 80%;
+#reviews-button:hover {
+    background: snow;
 }
