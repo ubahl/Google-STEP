@@ -33,7 +33,7 @@ public final class FindMeetingQuery {
     long duration = request.getDuration();
 
     // If a requested attendee is in a meeting, add it to allEvents.
-    // O(n^2)
+    // O(EA), where E = size of events, A = size of attendees
     for (Event e : events) {
         for (String attendee : attendees) {
             if (e.getAttendees().contains(attendee)) {
@@ -52,7 +52,6 @@ public final class FindMeetingQuery {
     // Worst case: O(n^2).
     int eventIndex = 0;
     int i = TimeRange.START_OF_DAY;
-
     while (i <= TimeRange.END_OF_DAY) {
 
         TimeRange time;

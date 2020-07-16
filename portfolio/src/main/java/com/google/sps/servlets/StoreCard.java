@@ -57,6 +57,7 @@ public class StoreCard {
         try {
             openNow = openingHours.openNow;
         } catch (Exception e) {
+            // Otherwise, 
             e.printStackTrace();
         }
 
