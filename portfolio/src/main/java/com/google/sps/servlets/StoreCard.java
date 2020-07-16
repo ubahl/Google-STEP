@@ -45,7 +45,7 @@ public class StoreCard {
             photoString = "https://ghspawprint.com/wp-content/uploads/2019/03/bubbletea.png";
         } else {
             String photoRef = photos[0].photoReference;
-            PhotoRequest request = PlacesApi.photo(geoApiContext, photoRef).maxHeight(180).maxWidth(180);
+            PhotoRequest request = PlacesApi.photo(geoApiContext, photoRef).maxHeight(180); //.maxWidth(180);
             ImageResult photoResult = request.awaitIgnoreError();
             byte[] photoBytes = photoResult.imageData;
             String encodedPhoto = new String(Base64.getEncoder().encode(photoBytes));
