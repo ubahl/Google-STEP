@@ -37,6 +37,7 @@ public class SearchServlet extends HttpServlet {
     Key myKey;
     GeoApiContext geoApiContext;
     final int SEARCH_RADIUS = 15000; // Radius to search for boba shops (meters).
+    final int MAX_CARDS = 20;
 
     @Override
     public void init() {
@@ -72,7 +73,7 @@ public class SearchServlet extends HttpServlet {
         PlacesSearchResult[] results = nearbyShops.awaitIgnoreError().results;
 
         ArrayList<StoreCard> cards = new ArrayList<StoreCard>();
-        for (int i = 0; i < results.length; i++) {
+        for (int i = 0; i < MAX_CARDS && i < results.length; i++) {
             StoreCard newCard = new StoreCard(results[i], geoApiContext);
             cards.add(newCard);
         }

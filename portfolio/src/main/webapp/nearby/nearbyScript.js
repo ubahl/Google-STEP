@@ -12,17 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/* Get the user's location. */
-function setUp() {
+/* Creates a box with the specified message. */
+function messageBox(message){
     allCards = document.getElementById('all-cards');
 
-    // Adds a loading box.
     loadingBox = document.createElement('div');
     loadingBox.setAttribute('id', 'loading-box');
 
     loadingText = document.createElement('p');
     loadingText.setAttribute('id', 'loading-text');
+    loadingText.innerText = message;
 
+    loadingBox.appendChild(loadingText);
+    allCards.appendChild(loadingBox);
+}
+
+function changeMessage(message) {
+    loadingText = document.getElementById('loading-text');
+    loadingText.innerText = message;
+}
+
+/* Get the user's location. */
+function setUp() {
     var message = "";
 
     if (navigator.geolocation) {
@@ -31,17 +42,13 @@ function setUp() {
     } else {
         message = "We can't find you!";
     }
-
-    loadingText.innerText = message;
-
-    loadingBox.appendChild(loadingText);
-    allCards.appendChild(loadingBox);
+    
+    messageBox(message);
 }
 
 /* If the user declines geolocation. */
 function noLocation(error) {
-    loadingText = document.getElementById('loading-text');
-    loadingText.innerText = "We can't find you!";
+    changeMessage("We can't find you!");
 }
 
 /* If the user allows geolocation, send a GET request to the server with the search term and location. */
@@ -68,7 +75,12 @@ async function getSearchResults(position) {
     const message = await response.json();
     console.log(message);
 
-    makeAndShowCards(message);
+    if (message.length == 0) {
+        changeMessage('No results');
+    }
+    else {
+        makeAndShowCards(message);
+    };
 }
 
 /* Make the store cards and add them to the page. */

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Boba Bud</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/images/bobalogo.png">
     <script src="script.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   </head>
@@ -25,13 +26,13 @@
       <div id="search-div">
         <input id="search-text" type="text" name="text" placeholder="enter a drink name"/>
         <a id="search-button" href="nearby/nearby.html" onclick="storeSearchText()"> 
-            <i class="fa fa-search"></i>
+          <i class="fa fa-search"></i>
         </a>
       </div>
     
       <!-- Reviews button at bottom. -->
-      <div id="reviews-button">
-          <button onclick="reviewsPage()">Reviews</button>
+      <div id="reviews-div">
+          <button id="reviews-button" onclick="reviewsPage()">about</button>
       </div>
   </body>
 </html>
