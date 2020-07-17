@@ -21,7 +21,6 @@ function messageBox(message){
 
     loadingText = document.createElement('p');
     loadingText.setAttribute('id', 'loading-text');
-
     loadingText.innerText = message;
 
     loadingBox.appendChild(loadingText);
@@ -43,7 +42,7 @@ function setUp() {
     } else {
         message = "We can't find you!";
     }
-
+    
     messageBox(message);
 }
 
