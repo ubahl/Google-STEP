@@ -37,7 +37,7 @@ public class SearchServlet extends HttpServlet {
     Key myKey;
     GeoApiContext geoApiContext;
     final int SEARCH_RADIUS = 15000; // Radius to search for boba shops (meters).
-    final int MAX_CARDS = 12;
+    final int MAX_CARDS = 20;
 
     @Override
     public void init() {
