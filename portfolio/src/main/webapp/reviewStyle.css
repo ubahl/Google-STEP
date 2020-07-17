@@ -55,9 +55,10 @@ body {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
+
 @keyframes fadein {
-  0% { opacity:0; }
-  100% { opacity:1; }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 #review-box {
@@ -75,7 +76,7 @@ body {
 }
 
 #review-text {
-  color: darkSlateGrey;
+  color: darkslategrey;
   font-family: Helvetica, Verdana, sans-serif;
   text-align: left;
 }
@@ -96,7 +97,7 @@ body {
   margin: 10px;
   padding: 20px;
   text-align: left;
-  width: 80%; 
+  width: 80%;
 }
 
 #name {
@@ -111,7 +112,7 @@ body {
   width: 90%;
 }
 
-#review { 
+#review {
   border: none;
   border-radius: 15px;
   font-family: Helvetica, Verdana, sans-serif;
@@ -129,7 +130,7 @@ body {
   background: none;
   border: 1px solid black;
   border-radius: 15px;
-  outline: none; 
+  outline: none;
 }
 
 #submit-review:hover {
