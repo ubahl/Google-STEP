@@ -1,5 +1,5 @@
 html {
-  border: 10px solid #DCBEA1;
+  border: 10px solid #dcbea1;
   height: -moz-calc(100% - 20px); /* Firefox */
   height: -webkit-calc(100% - 20px); /* Chrome, Safari */
   height: calc(100% - 20px);
@@ -22,8 +22,8 @@ body {
   display: inline-block;
   font-family: Helvetica, Verdana, sans-serif;
   position: absolute;
-  right:  20px;
-  top: 0px;
+  right: 20px;
+  top: 0;
 }
 
 #logo-box {
@@ -42,7 +42,7 @@ body {
   left: 50%;
   position: absolute;
   transform: translate(-52%);
-  width: 450px;  
+  width: 450px; 
 }
 
 #search-button {
@@ -53,7 +53,7 @@ body {
   display: flex;
   float: right;
   height: 25px;
-  justify-content: center; 
+  justify-content: center;
   padding-right: 10px;
   padding-top: 3px;
   text-decoration: none;
@@ -64,15 +64,14 @@ body {
   color: black;
 }
 
-#search-text
-{
+#search-text {
   background: none;
   border: none;
   float: left;
   font-size: 16px;
   padding-left: 15px;
   padding-top: 6px;
-  outline: none; 
+  outline: none;
   width: 380px;
 }
 
@@ -92,7 +91,7 @@ body {
   font-size: 14px;
   height: 25px;
   outline: none;
-  width: 55px; 
+  width: 55px;
 }
 
 #reviews-button:hover {
