@@ -83,9 +83,9 @@ public final class FindMeetingQuery {
 
             // Use the calculated start and end values to create the free time period.
             // Add this period if it is long enough for the meeting request.
-            TimeRange freePer = TimeRange.fromStartEnd(start, end, false);
-            if (freePer.duration() >= duration) {
-                availableTimes.add(freePer);
+            TimeRange freePeriod = TimeRange.fromStartEnd(start, end, false);
+            if (freePeriod.duration() >= duration) {
+                availableTimes.add(freePeriod);
             }
 
             // Adjust i to the next start time
