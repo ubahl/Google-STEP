@@ -21,8 +21,9 @@ import java.util.Collections;
 
 public final class FindMeetingQuery {
   
+  // Gets the available times for both the required and optional attendees, then returns the overlapping times
+  // which consider optional attendees.
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-
     long duration = request.getDuration();
 
     Collection<String> requiredAttendees = request.getAttendees();
@@ -115,16 +116,17 @@ public final class FindMeetingQuery {
 
 
   Collection<TimeRange> findOverlappingTimes(Collection<String> requiredAttendees, Collection<TimeRange> availableTimes, Collection<TimeRange> availableTimesOptional) {
-
     Collection<TimeRange> overlappingTimes = new ArrayList<TimeRange>();
-
     
+      // If there are no required attendees, return the optional attendees availability.
       if (requiredAttendees.size() == 0) {
         return availableTimesOptional;
       }
+      // If there are no optional attendee times, return the required attendee available times.
       else if (availableTimesOptional.size() == 0) {
         return availableTimes;
       }
+      // Otherwise, find the times where there is overlap between optional and required attendees.
       else {
           for (TimeRange a : availableTimes) {
               for (TimeRange o : availableTimesOptional) {
@@ -139,7 +141,5 @@ public final class FindMeetingQuery {
       }
       return overlappingTimes;
   }
-
 }  
-
   
