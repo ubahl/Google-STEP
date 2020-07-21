@@ -142,4 +142,3 @@ public final class FindMeetingQuery {
       return overlappingTimes;
   }
 }
-  
