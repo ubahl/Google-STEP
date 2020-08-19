@@ -11,7 +11,7 @@ Boba Bud is a fun [website](https://umabahl-step-2020.uc.r.appspot.com/) for bob
 
 ### Technologies used
 
-The web application was created using HTML, CSS, Javascript, and Java Servlets. It is built using Maven.
+The web application was created using HTML, CSS, Javascript, and Java Servlets. It is built and deployed using Maven.
 
 ### APIs used
 
